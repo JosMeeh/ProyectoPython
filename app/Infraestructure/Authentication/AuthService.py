@@ -1,7 +1,7 @@
 from jose import jwt
-from app.Domain.Usuario.UsuarioClass import Usuario
+from app.Domain.Users.UsuarioClass import Usuario
 # Función para generar un token JWT
-
+ROLES_PERMITIDOS = ["Administrador", "Chef", "Camarero", "Cliente"]
 def generate_token(Usuario:Usuario):
     payload = {
         "name": Usuario.name,
@@ -15,7 +15,7 @@ def verifyAccess(token,role:str):
     try:
         Decode_Token = jwt.decode(token, role, algorithms=["HS256"])
         print(Decode_Token)
-        if "role" in Decode_Token and Decode_Token["role"] == role:
+        if "role" in Decode_Token and Decode_Token["role"] in ROLES_PERMITIDOS:
             print("Authorize")
             return True
         else:

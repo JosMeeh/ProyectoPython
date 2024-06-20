@@ -1,9 +1,7 @@
 from fastapi import FastAPI
-from app.Services.Database.dataBaseConfig import dataBaseSession,Users
-import json
-from app.Domain.Usuario import UsuarioController
-from app.Services.Authentication import AuthService
-from app.Domain.Usuario.UsuarioController import UsuarioController
+from app.Infraestructure.Database.dataBaseConfig import dataBaseSession
+from app.Infraestructure.Authentication import AuthService
+from app.Infraestructure.Users.UsuarioController import UsuarioController
 app = FastAPI()
 app.include_router(UsuarioController)
 database = dataBaseSession
@@ -25,5 +23,5 @@ async def verifyToken(token:str):
 
 ##pip install SQLAlchemy
 ##pip install psycopg2-binary
-##pip install python-jose (Si)
+##pip install python-jose
 ##Ejecuten estos comandos para poder correr la aplicacion

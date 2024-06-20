@@ -1,8 +1,8 @@
 ##Todos los controladores/endpoints de usuario aca
-from app.Domain.Usuario.UsuarioClass import Usuario
-import app.Domain.Usuario.UsuarioService as UsuarioService
-from app.Services.Database.dataBaseConfig import dataBaseSession,Users
-from app.Services.Authentication import AuthService
+from app.Domain.Users.UsuarioClass import Usuario
+import app.Services.Users.UsuarioService as UsuarioService
+from app.Infraestructure.Database.dataBaseConfig import dataBaseSession,Users
+from app.Infraestructure.Authentication import AuthService
 from fastapi import APIRouter
 
 database = dataBaseSession
