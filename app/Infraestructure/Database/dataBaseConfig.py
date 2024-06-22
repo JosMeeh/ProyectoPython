@@ -6,12 +6,13 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.dialects.postgresql import UUID
 
-DB_HOST = os.environ.get('DB_HOST', 'localhost')
-DB_PORT = os.environ.get('DB_PORT', 5432)
-DB_USER = os.environ.get('DB_USER', 'postgres')
-DB_PASSWORD = os.environ.get('DB_PASSWORD', '12345678')
-DB_NAME = os.environ.get('DB_NAME', 'ayuda')
-connection_string = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+DBHOST = os.environ.get('DB_HOST', 'localhost')
+DBPORT = os.environ.get('DB_PORT', 5432)
+DBUSER = os.environ.get('DB_USER', 'postgres')
+DBPASSWORD = os.environ.get('DB_PASSWORD', '12345678')
+DBNAME = os.environ.get('DBNAME', 'proyecto')
+
+connection_string = f'postgresql://{DBUSER}:{DBPASSWORD}@{DBHOST}:{DBPORT}/{DBNAME}'
 engine = create_engine(connection_string)
 Base = declarative_base()
 Session = sessionmaker(bind=engine)

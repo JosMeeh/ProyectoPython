@@ -1,7 +1,11 @@
-ROLES_PERMITIDOS = ["Administrador", "Chef", "Camarero", "Cliente"]
-def validateUsuario(role: str):
-    if role not in ROLES_PERMITIDOS:
-        raise ValueError(f"El rol '{role}' no es válido. Los roles permitidos son: {', '.join(ROLES_PERMITIDOS)}")
-        return False
-    else:
-        return True
+from app.Services.Users.UsuarioInterface import UsuarioInterfaces
+class UsuarioService(UsuarioInterfaces):
+    ROLES_PERMITIDOS = ["Administrador", "Chef", "Camarero", "Cliente"]
+
+    def validateUsuario(self, role: str) -> bool:
+        if role not in self.ROLES_PERMITIDOS:
+            return False
+        else:
+            return True
+
+
