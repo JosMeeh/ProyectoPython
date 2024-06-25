@@ -11,7 +11,6 @@ DBPORT = os.environ.get('DB_PORT', 5432)
 DBUSER = os.environ.get('DB_USER', 'postgres')
 DBPASSWORD = os.environ.get('DB_PASSWORD', '12345678')
 DBNAME = os.environ.get('DBNAME', 'proyecto')
-
 connection_string = f'postgresql://{DBUSER}:{DBPASSWORD}@{DBHOST}:{DBPORT}/{DBNAME}'
 engine = create_engine(connection_string)
 Base = declarative_base()
@@ -23,6 +22,10 @@ class dataBaseSession():
    def addInDatabase(T: any):
       session.add(T)
       session.commit()
+
+   def findUserInDatabase(T:any,id:str):
+       Instance_object = session.query(T).get(id)
+       return Instance_object
 
 class Users(Base):
     __tablename__ = "Users"

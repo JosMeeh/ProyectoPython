@@ -2,5 +2,5 @@ from abc import ABC, abstractmethod
 
 class UsuarioInterfaces(ABC):
     @abstractmethod
-    def validateUsuario(arg:str) -> bool:
+    def validateUsuario(self,arg:str) -> bool:
         pass
