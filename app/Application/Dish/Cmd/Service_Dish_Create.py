@@ -3,11 +3,7 @@ from app.Application.shared.Error_Response import Error_Response
 from app.Domain.Dish.Dish_Factory import Dish_Factory
 from app.Domain.Dish.Dish import Dish
 from app.Domain.Dish.Dish_Repository import Dish_Repository
-
-
 from app.Domain.Dish.Dish import Dish
-from app.Domain.Dish.Dish_VO import Description_Dish, Id_Dish, Name_Dish, Price_Dish, Recipe
-from app.Domain.Ingredient.Ingredient_VO import Id_Ingredient
 
 
 class Create_Dish_Parameter(IService_Parameter):
@@ -47,6 +43,7 @@ class Create_Dish_Service(IService):
             servicePO.price,
             servicePO.recipe
         )
+
         # guardar entidad en repositorio 
         saved_dish:Dish | Exception = await self.__repository.addDish(new_dish)
         #VALIDAR QUE SE HA GUARDADO EL AGREGADO CORRECTAMENTE:

@@ -20,15 +20,19 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 class dataBaseSession():
-   def createTables():
-      Base.metadata.create_all(engine)
-   def addInDatabase(T: any):
-      session.add(T)
-      session.commit()
+    def createTables():
+        Base.metadata.create_all(engine)
+    def addInDatabase(T: any):
+        session.add(T)
+        session.commit()
 
-   def findUserInDatabase(T:any,id:str):
-       Instance_object = session.query(T).get(id)
-       return Instance_object
+    def findInDatabase(T:any,id:str):
+        Instance_object = session.query(T).get(id)
+        return Instance_object
+   
+    def findAllInDatabase(T:any):
+        Instance_object = session.query(T).all()
+        return Instance_object
 
 class Users(Base):
     __tablename__ = "Users"
