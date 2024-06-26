@@ -9,8 +9,8 @@ from sqlalchemy.dialects.postgresql import UUID
 DB_HOST = os.environ.get('DB_HOST', 'localhost')
 DB_PORT = os.environ.get('DB_PORT', 5432)
 DB_USER = os.environ.get('DB_USER', 'postgres')
-DB_PASSWORD = os.environ.get('DB_PASSWORD', '12345678')
-DB_NAME = os.environ.get('DB_NAME', 'proyecto')
+DB_PASSWORD = os.environ.get('DB_PASSWORD', '0000')
+DB_NAME = os.environ.get('DB_NAME', 'prueba1')
 connection_string = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 
 
@@ -25,12 +25,24 @@ class dataBaseSession():
     def addInDatabase(T: any):
         session.add(T)
         session.commit()
+    def createTables():
+        Base.metadata.create_all(engine)
+    def addInDatabase(T: any):
+        session.add(T)
+        session.commit()
 
     def findInDatabase(T:any,id:str):
         Instance_object = session.query(T).get(id)
         if Instance_object:
             return Instance_object
         else: return None
+   
+    def findAllInDatabase(T:any):
+        Instance_object = session.query(T).all()
+        return Instance_object
+    def findInDatabase(T:any,id:str):
+        Instance_object = session.query(T).get(id)
+        return Instance_object
    
     def findAllInDatabase(T:any):
         Instance_object = session.query(T).all()

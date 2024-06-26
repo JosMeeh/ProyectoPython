@@ -15,7 +15,12 @@ async def createUser(User :Usuario):
 
 @UsuarioController.patch("/Usuario/{user_id}")
 async def updateUser(User :Usuario,user_id:str):
-        return Service.updateUser(User,user_id)
+    user__to_update:Users = database.findUserInDatabase(Users,user_id)
+    print(user__to_update)
+    user__to_update.role = User.role
+    if (Service.validateUsuario(user__to_update.role)):
+        database.addInDatabase(user__to_update)
+        return {"message": "Succes updated user"}
 
 @UsuarioController.delete("/Usuario/{user_id}")
 async def updateUser(user_id:str):
