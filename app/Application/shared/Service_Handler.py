@@ -3,7 +3,7 @@ from app.Application.shared.IService import IService, IService_Parameter, IServi
 """ 
 
 """
-class IService_Response:
+class Service_Handler:
     def __init__(self) -> None:
         self.__services:dict[Service_Type, IService] = []
 
