@@ -8,5 +8,5 @@ class IDecorator_Service(IService):
         super().__init__()
         self._wrapee = wrapee
 
-    async def execute(self, servicePO:IService_Parameter) -> IService_Response:
+    def execute(self, servicePO:IService_Parameter) -> IService_Response:
         return super().execute(servicePO)
