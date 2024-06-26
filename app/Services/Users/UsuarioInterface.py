@@ -2,5 +2,9 @@ from abc import ABC, abstractmethod
 
 class UsuarioInterfaces(ABC):
     @abstractmethod
-    def validateUsuario(self,arg:str) -> bool:
+    def addUser(self,User:any):
+        pass
+
+    @abstractmethod
+    def updateUser(self,User: any, userd_id: str):
         pass

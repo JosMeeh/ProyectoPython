@@ -11,6 +11,7 @@ def generate_token(Usuario:Usuario):
     return jwt.encode(payload, secret_key, algorithm="HS256")
 
 # Función para decodificar un token JWT
+
 def verifyAccess(token,role:list[str]):
     try:
         Decode_Token = jwt.decode(token, role, algorithms=["HS256"])
