@@ -1,2 +1,3 @@
 class Id_Ingredient:
-    pass
+    def __init__(self, id:str) -> None:
+        pass

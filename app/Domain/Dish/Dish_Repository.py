@@ -5,25 +5,25 @@ from app.Domain.Dish.Dish_VO import Description_Dish, Id_Dish, Name_Dish, Price_
 
 class Dish_Repository(ABC):
     @abstractmethod
-    def searchDishbyId(id:Id_Dish) -> Dish:
+    async def searchDishbyId(self, id:Id_Dish) -> Dish:
         pass
 
     @abstractmethod
-    def searchAllDishes() -> list[Dish]:
+    async def searchAllDishes(self) -> list[Dish]:
         pass
 
     @abstractmethod
-    def addDish(dish:Dish) -> Dish:
+    async def addDish(self, dish:Dish) -> Dish:
         pass
 
     @abstractmethod
-    def deleteDish(id:Id_Dish) -> Dish:
+    async def deleteDish(self, id:Id_Dish) -> Dish:
         pass
 
     @abstractmethod
-    def updateDish(id:Id_Dish, name:Name_Dish, description:Description_Dish, price:Price_Dish) -> Dish:
+    async def updateDish(self, id:Id_Dish, name:Name_Dish, description:Description_Dish, price:Price_Dish) -> Dish:
         pass
 
     @abstractmethod
-    def updateRecipe(id:Id_Dish, recipe:Recipe) -> Dish:
+    async def updateRecipe(self, id:Id_Dish, recipe:Recipe) -> Dish:
         pass        

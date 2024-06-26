@@ -2,7 +2,7 @@ import os
 import uuid
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.dialects.postgresql import UUID
 
@@ -36,4 +36,11 @@ class Users(Base):
     name = Column(String(36))
     role = Column(String(36))
     token = Column(String(1024), nullable=True)
+
+class DishBD(Base):
+    __tablename__ = "Dish"
+    id            = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    name          = Column(String(30))
+    description   = Column(String(500))
+    price         = Column(Float)
 

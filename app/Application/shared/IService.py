@@ -44,5 +44,5 @@ class IService_Response:
 """
 class IService(ABC):
     @abstractmethod
-    def execute(self, servicePO:IService_Parameter) -> IService_Response:
+    async def execute(self, servicePO:IService_Parameter) -> IService_Response:
         pass

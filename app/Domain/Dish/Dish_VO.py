@@ -5,14 +5,14 @@ from app.Domain.Ingredient.Ingredient_VO import Id_Ingredient
     - id del plato de comida
 """
 class Id_Dish:
-    def __init__(self, id:int) -> None:
+    def __init__(self, id:str) -> None:
         self.__id = id
 
     @property
     def id(self):
         return self.__id
     
-    def setId(id:int)  -> 'Id_Dish':
+    def setId(id:str)  -> 'Id_Dish':
         return Id_Dish(id)
     
 """ 
@@ -56,14 +56,15 @@ class Description_Dish:
     - precio del plato de comida
 """
 class Price_Dish:
-    def __init__(self, price:int) -> None:
+    def __init__(self, price:float) -> None:
+        if (price < 0): price * -1
         self.__price = price
 
     @property
     def price(self):
         return self.__price
     
-    def setPrice(price:int) -> 'Price_Dish':
+    def setPrice(price:float) -> 'Price_Dish':
         return Price_Dish(price)
     
 """ 

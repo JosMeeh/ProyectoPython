@@ -35,4 +35,12 @@ class Dish:
     @price.setter
     def price(self, new_Price:Price_Dish):
         self.__price_Dish = new_Price
+
+    @property
+    def description(self) -> Description_Dish:
+        return self.__description_Dish
+    
+    @property
+    def name(self) -> Name_Dish:
+        return self.__name_Dish
     
