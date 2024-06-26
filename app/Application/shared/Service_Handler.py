@@ -7,9 +7,9 @@ class Service_Handler:
     def __init__(self) -> None:
         self.__services:dict[Service_Type, IService] = []
 
-    def execute(self, servicePO:IService_Parameter) -> IService_Response:
+    async def execute(self, servicePO:IService_Parameter) -> IService_Response:
         #PROBAR LO QUE SUCEDE SI NO EXISTE TAL TIPO DE SERVICIO
-        response = self.__services[servicePO.type].execute(servicePO)
+        response = await self.__services[servicePO.type].execute(servicePO)
         return response
 
     def addService(self, type:Service_Type, service:IService) -> None:
