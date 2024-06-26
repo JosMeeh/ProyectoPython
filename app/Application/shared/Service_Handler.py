@@ -1,3 +1,4 @@
+from app.Application.Dish.Cmd.Service_Dish_Create import Create_Dish_Service
 from app.Application.shared.IService import IService, IService_Parameter, IService_Response, Service_Type
 
 """ 
@@ -5,7 +6,7 @@ from app.Application.shared.IService import IService, IService_Parameter, IServi
 """
 class Service_Handler:
     def __init__(self) -> None:
-        self.__services:dict[Service_Type, IService] = []
+        self.__services:dict[Service_Type, IService] = {}
 
     def execute(self, servicePO:IService_Parameter) -> IService_Response:
         #PROBAR LO QUE SUCEDE SI NO EXISTE TAL TIPO DE SERVICIO
