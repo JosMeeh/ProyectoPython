@@ -7,6 +7,12 @@ from app.Infraestructure.Database.dataBaseConfig import dataBaseSession,Users
 from app.Infraestructure.Dtos.UsuarioDTO import Usuario
 database = dataBaseSession
 
+from app.Infraestructure.Database import dataBaseConfig
+from app.Infraestructure.Authentication import AuthService
+from app.Infraestructure.Database.dataBaseConfig import dataBaseSession,Users
+from app.Infraestructure.Dtos.UsuarioDTO import Usuario
+database = dataBaseSession
+
 class UsuarioService(UsuarioInterfaces):
     ROLES_PERMITIDOS = ["Administrador", "Chef", "Camarero", "Cliente"]
 
