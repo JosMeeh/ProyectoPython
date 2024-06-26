@@ -6,11 +6,13 @@ from app.Infraestructure.Dish.DishSQLRepository import DishSQLRepository
 from fastapi import APIRouter
 from app.Infraestructure.Dtos.DishDTO import DishDTO
 from app.Domain.Dish.Dish_VO import Description_Dish, Id_Dish, Name_Dish, Price_Dish, Recipe
+from app.Application.Dish.Query.Service_Dish_ById import SearchBy_Id_Dish_Service, SearchById_Dish_Parameter
 
 DishController = APIRouter()
 services:Service_Handler = Service_Handler()
 repositorySQL = DishSQLRepository()
 services.addService(Service_Type.Command_Create, Create_Dish_Service(repository=repositorySQL))
+services.addService(Service_Type.Query_by_Id, SearchBy_Id_Dish_Service(repository=repositorySQL))
 
 @DishController.post("/Dish")
 async def createDish(dto:DishDTO):
@@ -19,7 +21,8 @@ async def createDish(dto:DishDTO):
 
 @DishController.get("/Dish/{id}")
 async def createDish(id:str):
-    test_dish = await repositorySQL.searchDishbyId(Id_Dish(id))
+    servicesPO = SearchById_Dish_Parameter(id)
+    return await services.execute(servicesPO)
     
 
     

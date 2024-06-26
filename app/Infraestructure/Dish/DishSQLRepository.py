@@ -13,9 +13,8 @@ class DishSQLRepository(Dish_Repository):
 
     async def searchDishbyId(self, id:Id_Dish) -> Dish:
         try:
-            db_dish= self.__database.findUserInDatabase(DishBD, id.id)
-            print(db_dish.__dict__)
-            #return self.__factory.create(db_dish.id)
+            db_dish:DishBD = self.__database.findInDatabase(DishBD, id.id)
+            return self.__factory.create(db_dish.id, db_dish.name, db_dish.description, db_dish.price, None)
         except Exception as e:
             return e
 

@@ -14,6 +14,7 @@ class Dish:
         self.__name_Dish        = name
         self.__description_Dish = description
         self.__price_Dish       = price
+        self.__recipe           = None
         if recipe is not None:
             self.__recipe       = recipe
 
