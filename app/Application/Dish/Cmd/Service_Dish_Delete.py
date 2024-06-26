@@ -20,3 +20,6 @@ class Delete_Dish_Response(IService_Response):
         self.price = price
         self.recipe = recipe
 
+
+class Delete_Dish_Service():
+    pass

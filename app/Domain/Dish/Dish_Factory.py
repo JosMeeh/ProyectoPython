@@ -12,10 +12,15 @@ class Dish_Factory:
         nameVO = Name_Dish(name)
         descriptionVO = Description_Dish(description)
         priceVO = Price_Dish(price)
-        ingridients_list:list[tuple[Id_Ingredient, int]] = []
+        recipeVO = None
         if (recipe is not None):
+            ingridients_list:list[tuple[Id_Ingredient, int]] = []
+        
             for ingridient in recipe[0]:
                 ingridients_list.append((Id_Ingredient(ingridient[0]), ingridient[1]))
             recipeVO = Recipe(ingridients_list,recipe[1]) 
 
         return Dish(idVO, nameVO, descriptionVO, priceVO, recipeVO)
+    
+    def createId(self,idPO:str)->Id_Dish:
+        return Id_Dish(idPO)
