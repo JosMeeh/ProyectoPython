@@ -21,7 +21,7 @@ async def root():
 
 @app.get("/access/{token}")
 async def verifyToken(token:str):
-    if (AuthService.verifyAccess(token, ["Camarero","Chef"])):
+    if (AuthService.verifyAccess(token, ["Camarero", "admin", "chef"])):
         return {"message": "Authorized"}
     else:
         return {"message": "UnAuthorized"}
