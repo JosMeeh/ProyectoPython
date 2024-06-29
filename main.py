@@ -11,9 +11,6 @@ command.upgrade(config, 'head') # Ejecutar la migración
 
 app.include_router(UsuarioController)
 
-
-
-
 @app.get("/")
 async def root():
     return {"message": "Hello World"}

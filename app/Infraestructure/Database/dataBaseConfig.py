@@ -9,8 +9,8 @@ from sqlalchemy.dialects.postgresql import UUID
 DB_HOST = os.environ.get('DB_HOST', 'localhost')
 DB_PORT = os.environ.get('DB_PORT', 5432)
 DB_USER = os.environ.get('DB_USER', 'postgres')
-DB_PASSWORD = os.environ.get('DB_PASSWORD', '0000')
-DB_NAME = os.environ.get('DB_NAME', 'prueba1')
+DB_PASSWORD = os.environ.get('DB_PASSWORD', '12345678')
+DB_NAME = os.environ.get('DB_NAME', 'proyecto')
 connection_string = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 
 
@@ -28,18 +28,29 @@ class dataBaseSession():
 
     def findInDatabase(T:any,id:str):
         Instance_object = session.query(T).get(id)
-        return Instance_object
+        if Instance_object:
+            return Instance_object
+        else: return None
    
     def findAllInDatabase(T:any):
         Instance_object = session.query(T).all()
         return Instance_object
 
+    def deleteInDatabase(T:any,id:str):
+        Delete_Object = session.query(T).get(id)
+        if Delete_Object:
+            session.delete(Delete_Object)
+            session.commit()
+            return True
+        else: False
+
+
 class Users(Base):
     __tablename__ = "Users"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    name = Column(String(36))
-    role = Column(String(36))
-    token = Column(String(1024), nullable=True)
+    id            = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    name          = Column(String(36))
+    role          = Column(String(36))
+    token         = Column(String(1024), nullable=True)
 
 class DishBD(Base):
     __tablename__ = "Dish"
