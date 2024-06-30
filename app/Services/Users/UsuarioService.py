@@ -15,6 +15,7 @@ class UsuarioService(UsuarioInterfaces):
             return True
         else:
             return False
+
     def addUser(self,User:any):
         new_user = Users(name=User.name, role=User.role, token=AuthService.generate_token(User))
         if (self.validateUsuario(role = User.role)):
@@ -30,6 +31,7 @@ class UsuarioService(UsuarioInterfaces):
                 return {"message": "Succes updated user"}
             else: return {"message": "Error invalid role, please use: Administrador, Chef, Camarero"}
         else: return {"message": "User not found"}
+
     def deleteUser(self,userd_id: str):
         print(userd_id)
         if database.deleteInDatabase(Users,userd_id):
@@ -58,4 +60,3 @@ class UsuarioService(UsuarioInterfaces):
             }
             User_list.append(Print_User)
         return User_list
-
