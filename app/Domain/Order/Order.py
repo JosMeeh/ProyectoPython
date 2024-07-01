@@ -17,13 +17,13 @@ class Order:
         return self.OrderDishes
 
     @Order_dishes.setter
-    def recipe(self, new_order_dishes: Order_dishes):
+    def Order_dishes(self, new_order_dishes: Order_dishes):
         self.OrderDishes = new_order_dishes
     @property
     def Order_Mount(self) -> Mount:
         return self.OrderMount
 
-    @price.setter
+    @Order_Mount.setter
     def Order_Mount(self, new_Mount: Mount):
         self.OrderMount = new_Mount
 

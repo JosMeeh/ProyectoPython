@@ -9,7 +9,7 @@ from sqlalchemy.dialects.postgresql import UUID
 DB_HOST = os.environ.get('DB_HOST', 'localhost')
 DB_PORT = os.environ.get('DB_PORT', 5432)
 DB_USER = os.environ.get('DB_USER', 'postgres')
-DB_PASSWORD = os.environ.get('DB_PASSWORD', 'Puchy5531')
+DB_PASSWORD = os.environ.get('DB_PASSWORD', '12345678')
 DB_NAME = os.environ.get('DB_NAME', 'proyecto')
 connection_string = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 
@@ -64,3 +64,9 @@ class IngredientBD(Base):
     id            = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     name          = Column(String(100))
     amount        = Column(Integer)
+
+class OrderDB(Base):
+    __tablename__ = "Order"
+    id            = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    client_name   = Column(String(30))
+    price         = Column(Float)

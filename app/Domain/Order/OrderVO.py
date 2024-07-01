@@ -13,25 +13,25 @@ class Order_Client_name:
     def __init__(self, name:str) -> None:
         self.name = name
     @property
-    def client_name(self):
+    def name(self):
         return self.name
     def order_client_name(name: str) -> 'Order_Client_name':
         return Order_Client_name(name)
 
 class Order_dishes:
-    def __init__(self, dishes_list: list[tuple[Id_Dish, int]]) -> None:
+    def __init__(self, dishes_list: list[tuple[str, int]]) -> None:
         self.dishes_list = dishes_list
         @property
         def dishes_list(self):
             return self.dishes_list
-        def setOrder_dishes_list(dishes_list: list[tuple[Id_Dish, int]]) -> 'Order_dishes':
+        def setOrder_dishes_list(dishes_list: list[tuple[str, int]]) -> 'Order_dishes':
             return Order_dishes(dishes_list)
 
 class Mount:
-    def __init__(self, Mount:int) -> None:
+    def __init__(self, Mount:float) -> None:
         self.Mount = Mount
     @property
     def Mount(self):
         return self.Mount
-    def Mount_setMount(Mount: str) -> 'Mount':
+    def Mount_setMount(Mount: float) -> 'Mount':
         return Mount(Mount)

@@ -3,15 +3,18 @@ from app.Infraestructure.Database.dataBaseConfig import dataBaseSession
 from app.Infraestructure.Ingredient.IngredientController import IngredientController
 from app.Infraestructure.Authentication import AuthService
 from app.Infraestructure.Users.UsuarioController import UsuarioController
+from app.Infraestructure.Dish.DishController import DishController
+from app.Infraestructure.Order.OrderController import OrderController
 from alembic import command
 from alembic.config import Config
 app = FastAPI()
 config = Config('alembic.ini') # Lee la configuración de Alembic
 command.upgrade(config, 'head') # Ejecutar la migración
 
-
+app.include_router(DishController)
 app.include_router(UsuarioController)
 app.include_router(IngredientController)
+app.include_router(OrderController)
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
