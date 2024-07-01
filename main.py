@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.Infraestructure.Database.dataBaseConfig import dataBaseSession
+from app.Infraestructure.Ingredient.IngredientController import IngredientController
 from app.Infraestructure.Authentication import AuthService
 from app.Infraestructure.Users.UsuarioController import UsuarioController
 from alembic import command
@@ -10,7 +11,7 @@ command.upgrade(config, 'head') # Ejecutar la migración
 
 
 app.include_router(UsuarioController)
-
+app.include_router(IngredientController)
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
