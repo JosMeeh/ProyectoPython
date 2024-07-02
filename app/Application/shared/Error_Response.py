@@ -9,3 +9,13 @@ class Error_Response(IService_Response):
     @property
     def type(self) -> Result_Type:
         return self.__type 
+    
+
+class NotFound_Response(IService_Response):
+    def __init__(self) -> None:
+        super().__init__(type=Result_Type.Result)
+        self.description = "Id don't exists in database"
+
+    @property
+    def type(self) -> Result_Type:
+        return self.__type  

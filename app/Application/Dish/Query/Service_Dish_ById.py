@@ -1,5 +1,5 @@
 from app.Application.shared.IService import IService, IService_Parameter, IService_Response, Result_Type, Service_Type
-from app.Application.shared.Error_Response import Error_Response
+from app.Application.shared.Error_Response import Error_Response, NotFound_Response
 from app.Domain.Dish.Dish_Factory import Dish_Factory
 from app.Domain.Dish.Dish import Dish
 from app.Domain.Dish.Dish_Repository import Dish_Repository
@@ -40,10 +40,12 @@ class SearchById_Dish_Service(IService):
         # crear con fabrica el Id
         id_dish:Id_Dish = self.__factory.createId(servicePO.id)
         # buscar entidad en repositorio 
-        saved_dish:Dish | Exception = await self.__repository.searchDishbyId(id_dish)
+        saved_dish:Dish | None | Exception = await self.__repository.searchDishbyId(id_dish)
         #VALIDAR QUE SE HA BUSCADO EL AGREGADO CORRECTAMENTE:
         if isinstance(saved_dish,Exception):
             return Error_Response(saved_dish)
+        if saved_dish is None:
+            return NotFound_Response()
         #-----
         
 

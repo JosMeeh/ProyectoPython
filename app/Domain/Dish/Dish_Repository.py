@@ -21,7 +21,7 @@ class Dish_Repository(ABC):
         pass
 
     @abstractmethod
-    async def updateDish(self, id:Id_Dish, name:Name_Dish, description:Description_Dish, price:Price_Dish) -> Dish:
+    async def updateDish(self, id:Id_Dish, name:Name_Dish, description:Description_Dish, price:Price_Dish, recipe:Recipe) -> Dish:
         pass
 
     @abstractmethod

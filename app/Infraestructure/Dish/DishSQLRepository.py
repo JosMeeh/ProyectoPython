@@ -10,7 +10,6 @@ class DishSQLRepository(Dish_Repository):
         super().__init__()
         self.__database = dataBaseSession
         self.__factory = Dish_Factory()
-        self.__factory_food = Ingredient_Factory()
 
     async def searchIngredients(self, id:str, instructions:str)->Recipe:
         list_ingredients:list[Recipe_IngredientBD] | None = self.__database.findIngredientsOfDish(id)
@@ -26,6 +25,8 @@ class DishSQLRepository(Dish_Repository):
     async def searchDishbyId(self, id:Id_Dish) -> Dish:
         try:
             db_dish:DishBD = self.__database.findInDatabase(DishBD, id.id)
+            if db_dish is None:
+                return None
             dish = self.__factory.create(db_dish.id, db_dish.name, db_dish.description, db_dish.price, None)
             recipe = await self.searchIngredients(id.id, db_dish.instructions)
             if recipe is not None:
@@ -33,6 +34,7 @@ class DishSQLRepository(Dish_Repository):
             return dish
         except Exception as e:
             return e
+
 
     async def searchAllDishes(self) -> list[Dish]:
         try:
@@ -47,6 +49,7 @@ class DishSQLRepository(Dish_Repository):
             return dishes
         except Exception as e:
             return e
+
 
     async def addDish(self, dish:Dish) -> Dish:
         new_dish = DishBD(
@@ -71,6 +74,7 @@ class DishSQLRepository(Dish_Repository):
         except Exception as e:
             return e
 
+
     async def deleteDish(self, id:Id_Dish) -> Dish:
         try:
             deleted_ingredients = self.__database.deleteIngredientsOfDish(id.id)
@@ -83,15 +87,37 @@ class DishSQLRepository(Dish_Repository):
         except Exception as e:
             return e
 
-    async def updateDish(self, id:Id_Dish, name:Name_Dish, description:Description_Dish, price:Price_Dish) -> Dish:
-        pass
 
-    async def updateRecipe(self, id:Id_Dish, recipe:Recipe) -> Dish:
+    async def updateDish(self, id:Id_Dish, name:Name_Dish, description:Description_Dish, price:Price_Dish, recipe:Recipe) -> Dish:
+        try:
+            updated = self.__database.updateInDatabase(DishBD, id.id, 
+                                                            {'name':name.name,
+                                                             'description':description.description,
+                                                             'price':price.price})
+            if updated:
+                update_dish:Dish = await self.searchDishbyId(id)
+                update_recipe = await self.updateRecipe(id, recipe)
+                return update_dish
+            else:
+                return None
+        except Exception as e:
+            print(e)
+            return e  
+
+
+    async def updateRecipe(self, id:Id_Dish, recipe:Recipe) -> Recipe:
         try:
             deleted_ingredients = self.__database.deleteIngredientsOfDish(id.id)
             updated_dish = self.__database.updateInDatabase(DishBD, id.id, {'instructions':recipe.instructions})
+            for ingredient in recipe.ingredients:
+                recipe_ingredient = Recipe_IngredientBD(
+                    id_Dish = id.id,
+                    id_Ingredient = ingredient[0].id,
+                    amount = ingredient[1]
+                )
+                self.__database.addInDatabase(recipe_ingredient)
             if updated_dish:
-                return updated_dish
+                return recipe
             else:
                 return None
         except Exception as e:

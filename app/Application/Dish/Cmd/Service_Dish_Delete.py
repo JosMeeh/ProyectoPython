@@ -1,5 +1,5 @@
 from app.Application.shared.IService import IService, IService_Parameter, IService_Response, Result_Type, Service_Type
-from app.Application.shared.Error_Response import Error_Response
+from app.Application.shared.Error_Response import Error_Response, NotFound_Response
 from app.Domain.Dish.Dish_Factory import Dish_Factory
 from app.Domain.Dish.Dish import Dish
 from app.Domain.Dish.Dish_Repository import Dish_Repository
@@ -38,7 +38,7 @@ class Delete_Dish_Service():
         if isinstance(search_dish,Exception):
             return Error_Response(search_dish)
         if search_dish is None:
-            return Error_Response("NO EXISTE ESE PLATILLO") ####MODIFICAR POR EL ERROR CORRECTO####
+            return NotFound_Response()
         #-----        
         
         #CREAR RESPONSE
