@@ -25,7 +25,21 @@ class dataBaseSession():
     def addInDatabase(T: any):
         session.add(T)
         session.commit()
+    def createTables():
+        Base.metadata.create_all(engine)
+    def addInDatabase(T: any):
+        session.add(T)
+        session.commit()
 
+    def findInDatabase(T:any,id:str):
+        Instance_object = session.query(T).get(id)
+        if Instance_object:
+            return Instance_object
+        else: return None
+   
+    def findAllInDatabase(T:any):
+        Instance_object = session.query(T).all()
+        return Instance_object
     def findInDatabase(T:any,id:str):
         Instance_object = session.query(T).get(id)
         return Instance_object
@@ -34,12 +48,21 @@ class dataBaseSession():
         Instance_object = session.query(T).all()
         return Instance_object
 
+    def deleteInDatabase(T:any,id:str):
+        Delete_Object = session.query(T).get(id)
+        if Delete_Object:
+            session.delete(Delete_Object)
+            session.commit()
+            return True
+        else: False
+
+
 class Users(Base):
     __tablename__ = "Users"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    name = Column(String(36))
-    role = Column(String(36))
-    token = Column(String(1024), nullable=True)
+    id            = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    name          = Column(String(36))
+    role          = Column(String(36))
+    token         = Column(String(1024), nullable=True)
 
 class DishBD(Base):
     __tablename__ = "Dish"
@@ -48,3 +71,14 @@ class DishBD(Base):
     description   = Column(String(500))
     price         = Column(Float)
 
+class IngredientBD(Base):
+    __tablename__ = "Ingredient"
+    id            = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    name          = Column(String(100))
+    amount        = Column(Integer)
+
+class OrderDB(Base):
+    __tablename__ = "Order"
+    id            = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    client_name   = Column(String(30))
+    price         = Column(Float)

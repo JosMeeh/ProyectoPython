@@ -6,15 +6,11 @@ from app.Infraestructure.Authentication import AuthService
 from fastapi import APIRouter
 
 Service = UsuarioService()
-database = dataBaseSession
 UsuarioController = APIRouter()
 
 @UsuarioController.post("/Usuario")
 async def createUser(User :Usuario):
-    new_user = Users(name = User.name, role = User.role, token = AuthService.generate_token(User))
-    if (Service.validateUsuario(role = User.role)):
-        database.addInDatabase(new_user)
-        return {"message": "Succes created user"}
+   return Service.addUser(User)
 
 
 @UsuarioController.patch("/Usuario/{user_id}")
@@ -26,3 +22,14 @@ async def updateUser(User :Usuario,user_id:str):
         database.addInDatabase(user__to_update)
         return {"message": "Succes updated user"}
 
+@UsuarioController.delete("/Usuario/{user_id}")
+async def updateUser(user_id:str):
+        return Service.deleteUser(user_id)
+
+@UsuarioController.get("/Usuario/{user_id}")
+async def getUserById(user_id:str):
+        return Service.getUserById(user_id)
+
+@UsuarioController.get("/Usuario")
+async def getAllUsers():
+        return Service.getAllUsers()

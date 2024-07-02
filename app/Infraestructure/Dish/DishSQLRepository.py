@@ -3,11 +3,13 @@ from app.Domain.Dish.Dish import Dish
 from app.Domain.Dish.Dish_VO import Description_Dish, Id_Dish, Name_Dish, Price_Dish, Recipe
 from app.Infraestructure.Database.dataBaseConfig import dataBaseSession,DishBD
 from app.Domain.Dish.Dish_Factory import Dish_Factory
+from app.Domain.Dish.Dish_Factory import Dish_Factory
 
 class DishSQLRepository(Dish_Repository):
     def __init__(self) -> None:
         super().__init__()
         self.__database = dataBaseSession
+        self.__factory = Dish_Factory()
         self.__factory = Dish_Factory()
 
 
@@ -24,6 +26,11 @@ class DishSQLRepository(Dish_Repository):
             return self.__
         except Exception as e:
             return e
+        try:
+            self.__database.findAllInDatabase(DishBD, id)
+            return self.__
+        except Exception as e:
+            return e
 
     async def addDish(self, dish:Dish) -> Dish:
         new_dish = DishBD(
@@ -33,6 +40,7 @@ class DishSQLRepository(Dish_Repository):
         )
         try:
             self.__database.addInDatabase(new_dish)
+            return dish
             return dish
         except Exception as e:
             return e
