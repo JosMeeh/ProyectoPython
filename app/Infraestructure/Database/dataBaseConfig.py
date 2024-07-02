@@ -1,6 +1,6 @@
 import os
 import uuid
-from sqlalchemy import create_engine
+from sqlalchemy import ForeignKey, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.orm import sessionmaker
@@ -30,6 +30,7 @@ class dataBaseSession():
     def addInDatabase(T: any):
         session.add(T)
         session.commit()
+        return T
 
     def findInDatabase(T:any,id:str):
         Instance_object = session.query(T).get(id)
@@ -40,12 +41,9 @@ class dataBaseSession():
     def findAllInDatabase(T:any):
         Instance_object = session.query(T).all()
         return Instance_object
+    
     def findInDatabase(T:any,id:str):
         Instance_object = session.query(T).get(id)
-        return Instance_object
-   
-    def findAllInDatabase(T:any):
-        Instance_object = session.query(T).all()
         return Instance_object
 
     def deleteInDatabase(T:any,id:str):
@@ -56,6 +54,23 @@ class dataBaseSession():
             return True
         else: False
 
+    def updateInDatabase(T:any, id:str, values:dict):
+        Instance_object = session.query(T).update(values)
+        if Instance_object:
+            session.commit()
+            return True
+        else: False
+
+    def findIngredientsOfDish(id:str):
+        Instance_object = session.query(Recipe_IngredientBD).filter(Recipe_IngredientBD.id_Dish == id).all()
+        return Instance_object
+    
+    def deleteIngredientsOfDish(id:str):
+        Delete_Object = session.query(Recipe_IngredientBD).filter(Recipe_IngredientBD.id_Dish == id).delete(synchronize_session=False)
+        if Delete_Object:
+            session.commit()
+            return True
+        else: False
 
 class Users(Base):
     __tablename__ = "Users"
@@ -70,6 +85,7 @@ class DishBD(Base):
     name          = Column(String(30))
     description   = Column(String(500))
     price         = Column(Float)
+    instructions = Column(String(1000))
 
 class IngredientBD(Base):
     __tablename__ = "Ingredient"
@@ -82,3 +98,10 @@ class OrderDB(Base):
     id            = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     client_name   = Column(String(30))
     price         = Column(Float)
+
+
+class Recipe_IngredientBD(Base):
+    __tablename__ = "Recipe_Ingredient"
+    id_Dish       = Column(ForeignKey(DishBD.id), primary_key=True)
+    id_Ingredient = Column(ForeignKey(IngredientBD.id), primary_key=True)
+    amount        = Column(Integer)
