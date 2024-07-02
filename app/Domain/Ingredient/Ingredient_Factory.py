@@ -12,3 +12,6 @@ class Ingredient_Factory:
         amountVO = Amount_Ingredient(amount)
 
         return Ingredient(idVO, nameVO, amountVO)
+    
+    def createId(self,idPO:str)->Id_Ingredient:
+        return Id_Ingredient(idPO)

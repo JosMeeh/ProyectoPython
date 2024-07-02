@@ -5,6 +5,9 @@ from app.Domain.Dish.Dish import Dish
 from app.Domain.Dish.Dish_Repository import Dish_Repository
 from app.Domain.Dish.Dish import Dish
 from app.Domain.Dish.Dish_VO import Id_Dish
+from app.Domain.Ingredient.Ingredient import Ingredient
+from app.Domain.Ingredient.Ingredient_Repository import Ingredient_Repository
+from app.Domain.Ingredient.Ingredient_VO import Id_Ingredient
 
 
 class SearchById_Dish_Parameter(IService_Parameter):
@@ -26,10 +29,11 @@ class SearchById_Dish_Response(IService_Response):
 """ 
 
 """
-class SearchBy_Id_Dish_Service(IService):
-    def __init__(self, repository:Dish_Repository) -> None:
+class SearchById_Dish_Service(IService):
+    def __init__(self, repository:Dish_Repository, food_repository:Ingredient_Repository) -> None:
         super().__init__()
         self.__repository = repository
+        self.__foodrepository = food_repository 
         self.__factory = Dish_Factory()
 
     async def execute(self, servicePO: SearchById_Dish_Parameter) -> IService_Response:
@@ -41,6 +45,7 @@ class SearchBy_Id_Dish_Service(IService):
         if isinstance(saved_dish,Exception):
             return Error_Response(saved_dish)
         #-----
+        
 
         #CREAR RESPONSE
         response = SearchById_Dish_Response(
@@ -51,6 +56,11 @@ class SearchBy_Id_Dish_Service(IService):
             None
         )
         if saved_dish.recipe is not None:
-            response.recipe = (saved_dish.recipe.ingredients, saved_dish.recipe.instructions)
+            ingredient_list:list[tuple[str, int]] = []
+            for i in saved_dish.recipe.ingredients:
+                ingredient:Ingredient | Exception = await self.__foodrepository.searchIngredientbyId(i[0])
+                if not isinstance(ingredient,Exception):
+                    ingredient_list.append((ingredient.name_Ingredient.name, i[1]))
+            response.recipe = (ingredient_list, saved_dish.recipe.instructions)
         
         return response
