@@ -14,7 +14,6 @@ class IngredientSQLRepository(Ingredient_Repository):
     async def searchIngredientbyId(self, id: Id_Ingredient) -> Ingredient:
         try:
             db_ingredient = self.__database.findInDatabase(IngredientBD, id.id)
-            print(db_ingredient.__dict__, db_ingredient.name)
             return self.__factory.create(db_ingredient.id, db_ingredient.name, db_ingredient.amount)
         except Exception as e:
             return e
