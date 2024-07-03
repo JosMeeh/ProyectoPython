@@ -60,7 +60,7 @@ class Create_Dish_Service(IService):
             servicePO.name,
             servicePO.description,
             servicePO.price,
-            servicePO.recipe
+            None
         )
         if saved_dish.recipe is not None:
             ingredient_list:list[tuple[str, int]] = []

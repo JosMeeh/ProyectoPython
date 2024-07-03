@@ -62,4 +62,4 @@ class SearchAll_Menu_Service(IService):
 
             menus_response.append(response)
 
-        return menus_response
+        return SearchAll_Menu_Response(menus_response)

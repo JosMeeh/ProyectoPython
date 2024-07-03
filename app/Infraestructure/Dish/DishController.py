@@ -1,9 +1,9 @@
 from pydantic import UUID4
 from app.Application.Dish.Cmd.Service_Dish_Create import Create_Dish_Parameter, Create_Dish_Service
-from app.Application.shared.IService import Service_Type
+from app.Application.shared.IService import Service_Type, Result_Type
 from app.Application.shared.Service_Handler import Service_Handler
 from app.Infraestructure.Dish.DishSQLRepository import DishSQLRepository
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException, Response, status
 from app.Infraestructure.Dtos.DishDTO import DishDTO, DishUpdateDTO
 from app.Application.Dish.Query.Service_Dish_ById import SearchById_Dish_Service, SearchById_Dish_Parameter
 from app.Application.Dish.Query.Service_Dish_All import SearchAll_Dish_Service, SearchAll_Dish_Parameter
@@ -24,42 +24,75 @@ services.addService(Service_Type.Command_Delete, Delete_Dish_Service(repository=
 services.addService(Service_Type.Command_Update, Update_Dish_Service(repository=repositorySQL_dish, food_repository=repositorySQL_ingridient))
 
 
-@DishController.post("/Dish")
-async def createDish(dto:DishDTO):
+@DishController.post("/Dish", tags=["Dish"], status_code=200)
+async def createDish(dto:DishDTO,response: Response):
     ingredient_list:set = set()
     for i in dto.ingredient_id_list:
         ingredient_list.add(i[0])
     if (len(ingredient_list) < len(dto.ingredient_id_list)):
+        response.status_code = status.HTTP_422_UNPROCESSABLE_ENTITY
         return Error_Response("repeated ingredient Id")
     
     servicesPO = Create_Dish_Parameter(dto.name, dto.description, dto.price, (dto.ingredient_id_list, dto.instructions))
-    return await services.execute(servicesPO)
+    response_body = await services.execute(servicesPO)
 
-@DishController.get("/Dish/{id}")
-async def searchDishbyId(id:UUID4):
+    if response_body.type == Result_Type.Error:
+        response.status_code = status.HTTP_400_BAD_REQUEST
+    else:  
+        response.status_code = status.HTTP_201_CREATED
+    return response_body
+
+@DishController.get("/Dish/{id}", tags=["Dish"], status_code=200)
+async def searchDishbyId(id:UUID4,response: Response):
     servicesPO = SearchById_Dish_Parameter(id)
-    return await services.execute(servicesPO)
+    response_body = await services.execute(servicesPO)
+
+    if response_body.type == Result_Type.Error:
+        response.status_code = status.HTTP_400_BAD_REQUEST
+    else:  
+        response.status_code = status.HTTP_200_OK
+    return response_body
     
-@DishController.get("/Dish")
-async def searchDishAll():
+@DishController.get("/Dish", tags=["Dish"], status_code=200)
+async def searchDishAll(response: Response):
     servicesPO = SearchAll_Dish_Parameter()
-    return await services.execute(servicesPO)
+    response_body = await services.execute(servicesPO)
+    
+    if response_body.type == Result_Type.Error:
+        response.status_code = status.HTTP_400_BAD_REQUEST
+    else:  
+        
+        response.status_code = status.HTTP_200_OK
+    return response_body
 
-@DishController.delete("/Dish/{id}")
-async def deleteDish(id:UUID4):
+@DishController.delete("/Dish/{id}", tags=["Dish"], status_code=200)
+async def deleteDish(id:UUID4,response: Response):
     servicesPO = Delete_Dish_Parameter(id)
-    return await services.execute(servicesPO)
+    response_body = await services.execute(servicesPO)
 
-@DishController.put("/Dish/{id}")
-async def updateDish(dto:DishUpdateDTO):
+    if response_body.type == Result_Type.Error:
+        response.status_code = status.HTTP_400_BAD_REQUEST
+    else:  
+        response.status_code = status.HTTP_200_OK
+    return response_body
+
+@DishController.put("/Dish/{id}", tags=["Dish"], status_code=200)
+async def updateDish(dto:DishUpdateDTO,response: Response):
     ingredient_list:set = set()
     for i in dto.ingredient_id_list:
         ingredient_list.add(i[0])
     if (len(ingredient_list) < len(dto.ingredient_id_list)):
+        response.status_code = status.HTTP_422_UNPROCESSABLE_ENTITY
         return Error_Response("repeated ingredient Id")
 
     servicesPO = Update_Dish_Parameter(dto.id, dto.name, dto.description, dto.price, (dto.ingredient_id_list, dto.instructions))
-    return await services.execute(servicesPO)
+    response_body = await services.execute(servicesPO)
+
+    if response_body.type == Result_Type.Error:
+        response.status_code = status.HTTP_400_BAD_REQUEST
+    else:  
+        response.status_code = status.HTTP_200_OK
+    return response_body
     
 
     
