@@ -59,9 +59,7 @@ class Delete_Dish_Service():
                     ingredient_list.append((ingredient.name_Ingredient.name, i[1]))
             response.recipe = (ingredient_list, search_dish.recipe.instructions)
 
-        print("LOL")
         deleted_dish:Dish | Exception = await self.__repository.deleteDish(id_dish)
-        print("TESTING FINAL")
         #VALIDAR QUE SE HA BUSCADO EL AGREGADO CORRECTAMENTE:
         if isinstance(deleted_dish,Exception):
             return Error_Response(deleted_dish)

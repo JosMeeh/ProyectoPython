@@ -45,7 +45,7 @@ class SearchAll_Dish_Service(IService):
         dishes_response:list[SearchById_Dish_Response] = []
         for dish in saved_dishes:
             response = SearchById_Dish_Response(
-                    dish.getId().id,
+                    dish.id.id,
                     dish.name.name,
                     dish.description.description,
                     dish.price.price,

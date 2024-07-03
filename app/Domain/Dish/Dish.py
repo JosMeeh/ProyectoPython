@@ -18,7 +18,8 @@ class Dish:
         if recipe is not None:
             self.__recipe       = recipe
 
-    def getId(self) -> Id_Dish:
+    @property
+    def id(self) -> Id_Dish:
         return self.__id_Dish
 
     @property

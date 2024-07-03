@@ -95,8 +95,8 @@ class DishSQLRepository(Dish_Repository):
                                                              'description':description.description,
                                                              'price':price.price})
             if updated:
-                update_dish:Dish = await self.searchDishbyId(id)
                 update_recipe = await self.updateRecipe(id, recipe)
+                update_dish:Dish = await self.searchDishbyId(id)
                 return update_dish
             else:
                 return None

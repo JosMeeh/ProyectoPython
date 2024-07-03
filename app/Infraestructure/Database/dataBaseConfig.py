@@ -72,6 +72,21 @@ class dataBaseSession():
             return True
         else: False
 
+    def findDishesOfMenu(id:str):
+        Instance_object = session.query(Menu_DishesBD).filter(Menu_DishesBD.id_Menu == id).all()
+        return Instance_object
+    
+    def deleteDishesOfMenu(id:str):
+        Delete_Object = session.query(Menu_DishesBD).filter(Menu_DishesBD.id_Menu == id).delete(synchronize_session=False)
+        if Delete_Object:
+            session.commit()
+            return True
+        else: False
+
+
+
+
+
 class Users(Base):
     __tablename__ = "Users"
     id            = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
@@ -99,9 +114,19 @@ class OrderDB(Base):
     client_name   = Column(String(30))
     price         = Column(Float)
 
+class MenuDB(Base):
+    __tablename__ = "Menu"
+    id            = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    name          = Column(String(30))
+
 
 class Recipe_IngredientBD(Base):
     __tablename__ = "Recipe_Ingredient"
     id_Dish       = Column(ForeignKey(DishBD.id), primary_key=True)
     id_Ingredient = Column(ForeignKey(IngredientBD.id), primary_key=True)
     amount        = Column(Integer)
+
+class Menu_DishesBD(Base):
+    __tablename__ = "Menu_Dishes"
+    id_Dish       = Column(ForeignKey(DishBD.id), primary_key=True)
+    id_Menu       = Column(ForeignKey(MenuDB.id), primary_key=True)

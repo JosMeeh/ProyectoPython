@@ -5,14 +5,14 @@ from app.Domain.Dish.Dish_VO import Id_Dish
     - id del menu
 """
 class Id_Menu:
-    def __init__(self, id:int) -> None:
+    def __init__(self, id:str) -> None:
         self.__id = id
 
     @property
     def id(self):
         return self.__id
     
-    def setId(id:int)  -> 'Id_Menu':
+    def setId(id:str)  -> 'Id_Menu':
         return Id_Menu(id)
     
 """ 

@@ -47,7 +47,7 @@ class Update_Dish_Service(IService):
         )
 
         updated_dish:Dish | None | Exception = await self.__repository.updateDish(
-            new_dish.getId(),
+            new_dish.id,
             new_dish.name,
             new_dish.description,
             new_dish.price,
@@ -60,7 +60,7 @@ class Update_Dish_Service(IService):
         
         #CREAR RESPONSE
         response = Update_Dish_Parameter(
-            updated_dish.getId().id,
+            updated_dish.id.id,
             updated_dish.name.name,
             updated_dish.description.description,
             updated_dish.price.price,
