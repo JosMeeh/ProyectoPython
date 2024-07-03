@@ -9,8 +9,8 @@ from sqlalchemy.dialects.postgresql import UUID
 DB_HOST = os.environ.get('DB_HOST', 'localhost')
 DB_PORT = os.environ.get('DB_PORT', 5432)
 DB_USER = os.environ.get('DB_USER', 'postgres')
-DB_PASSWORD = os.environ.get('DB_PASSWORD', '0000')
-DB_NAME = os.environ.get('DB_NAME', 'prueba1')
+DB_PASSWORD = os.environ.get('DB_PASSWORD', '12345678')
+DB_NAME = os.environ.get('DB_NAME', 'proyecto')
 connection_string = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 
 
@@ -64,7 +64,9 @@ class dataBaseSession():
     def findIngredientsOfDish(id:str):
         Instance_object = session.query(Recipe_IngredientBD).filter(Recipe_IngredientBD.id_Dish == id).all()
         return Instance_object
-    
+    def findDishesofOrder(id:str):
+        Instance_object = session.query(Order_DishesBD).filter(Order_DishesBD.id_Order == id).all()
+        return Instance_object
     def deleteIngredientsOfDish(id:str):
         Delete_Object = session.query(Recipe_IngredientBD).filter(Recipe_IngredientBD.id_Dish == id).delete(synchronize_session=False)
         if Delete_Object:
@@ -114,10 +116,18 @@ class OrderDB(Base):
     client_name   = Column(String(30))
     price         = Column(Float)
 
+
 class MenuDB(Base):
     __tablename__ = "Menu"
     id            = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     name          = Column(String(30))
+
+
+class Order_DishesBD(Base):
+    __tablename__ = "Order_Dishes"
+    id_Order       = Column(ForeignKey(OrderDB.id), primary_key=True)
+    id_Dish        = Column(ForeignKey(DishBD.id),  primary_key=True)
+    amount         = Column(Integer)
 
 
 class Recipe_IngredientBD(Base):

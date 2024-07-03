@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from app.Application.shared.IService import IService, IService_Parameter, IService_Response, Result_Type, Service_Type
 from app.Application.shared.Error_Response import Error_Response, NotFound_Response
 from app.Domain.Dish.Dish_Factory import Dish_Factory
@@ -13,6 +15,7 @@ from app.Domain.Ingredient.Ingredient_VO import Id_Ingredient
 class SearchById_Dish_Parameter(IService_Parameter):
     def __init__(self, id:str) -> None:
         super().__init__(Service_Type.Query_by_Id)
+
         self.id = id
 
 

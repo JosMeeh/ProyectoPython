@@ -15,5 +15,13 @@ class Order_Factory:
         Order_disherVO = Order_dishes_list
         return Order(idVO,Order_disherVO,nameVO,MountVO)
 
+    def createOrder(self, Order_dishes_list: list[tuple[str, int]]):
+        response: list[tuple[str, int]] = []
+
+        for dish in Order_dishes_list:
+            print(dishp[0])
+            response.append((dish[0], dish[1]))
+        return Order_dishes(response)
+
 
 

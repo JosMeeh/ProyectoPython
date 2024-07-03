@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from app.Domain.Dish.Dish_Repository import Dish_Repository
 from app.Domain.Dish.Dish import Dish
 from app.Domain.Dish.Dish_VO import Description_Dish, Id_Dish, Name_Dish, Price_Dish, Recipe
