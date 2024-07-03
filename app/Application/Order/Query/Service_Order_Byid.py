@@ -51,21 +51,22 @@ class SearchById_Order_Service(IService):
         # VALIDAR QUE SE HA BUSCADO EL AGREGADO CORRECTAMENTE:
         if isinstance(saved_order, Exception):
             return Error_Response(saved_order)
-        if saved_order is None:
+        if saved_dish is None:
             return NotFound_Response()
         # -----
 
         # CREAR RESPONSE
-        response = SearchById_Order_Response(
+        response = SearchById_Dish_Response(
             servicePO.id,
-            saved_order.cliente_name,
-            saved_order.amount,
+            saved_dish.name.name,
+            saved_dish.description.description,
+            saved_dish.price.price,
             None
         )
         if saved_dish.recipe is not None:
             ingredient_list: list[tuple[str, int]] = []
             for i in saved_dish.recipe.ingredients:
-                ingredient: Ingredient | Exception = await self.__dish_repository.searchIngredientbyId(i[0])
+                ingredient: Ingredient | Exception = await self.__foodrepository.searchIngredientbyId(i[0])
                 if not isinstance(ingredient, Exception):
                     ingredient_list.append((ingredient.name_Ingredient.name, i[1]))
             response.recipe = (ingredient_list, saved_dish.recipe.instructions)

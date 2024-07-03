@@ -5,15 +5,12 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.dialects.postgresql import UUID
-from dotenv import load_dotenv
 
-
-load_dotenv()
-DB_HOST = os.environ.get('POSTGRES_SERVER')
-DB_PORT = os.environ.get('POSTGRES_PORT')
-DB_USER = os.environ.get('POSTGRES_USER')
-DB_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
-DB_NAME = os.environ.get('POSTGRES_DB')
+DB_HOST = os.environ.get('DB_HOST', 'localhost')
+DB_PORT = os.environ.get('DB_PORT', 5432)
+DB_USER = os.environ.get('DB_USER', 'postgres')
+DB_PASSWORD = os.environ.get('DB_PASSWORD', '12345678')
+DB_NAME = os.environ.get('DB_NAME', 'proyecto')
 connection_string = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 
 
@@ -70,14 +67,6 @@ class dataBaseSession():
     def findDishesofOrder(id:str):
         Instance_object = session.query(Order_DishesBD).filter(Order_DishesBD.id_Order == id).all()
         return Instance_object
-
-    def deletDishofOrders(id:str):
-        Delete_Object = session.query(Order_DishesBD).filter(Order_DishesBD.id_Order == id).delete(synchronize_session=False)
-        if Delete_Object:
-            session.commit()
-            return True
-        else: False
-
     def deleteIngredientsOfDish(id:str):
         Delete_Object = session.query(Recipe_IngredientBD).filter(Recipe_IngredientBD.id_Dish == id).delete(synchronize_session=False)
         if Delete_Object:
