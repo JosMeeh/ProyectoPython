@@ -16,11 +16,13 @@ services:Service_Handler    = Service_Handler()
 repositorySQL_dish          = DishSQLRepository()
 repositorySQL_menu          = MenuSQLRepository()
 
+#Inicializacion de los servicios y añadidos al Service_Handler
 services.addService(Service_Type.Command_Create, Create_Menu_Service(repository=repositorySQL_menu,food_repository=repositorySQL_dish))
 services.addService(Service_Type.Query_by_Id, SearchById_Menu_Service(repository=repositorySQL_menu,food_repository=repositorySQL_dish))
 services.addService(Service_Type.Query_all, SearchAll_Menu_Service(repository=repositorySQL_menu,food_repository=repositorySQL_dish))
 services.addService(Service_Type.Command_Delete, Delete_Menu_Service(repository=repositorySQL_menu,food_repository=repositorySQL_dish))
 services.addService(Service_Type.Command_Update, Update_Menu_Service(repository=repositorySQL_menu,food_repository=repositorySQL_dish))
+#-------------------------------------------------------------
 
 @MenuController.post("/Menu", tags=["Menu"], status_code=200)
 async def createMenu(dto:MenuDTO,response: Response):
@@ -33,6 +35,7 @@ async def createMenu(dto:MenuDTO,response: Response):
         response.status_code = status.HTTP_201_CREATED
     return response_body
 
+
 @MenuController.get("/Menu/{id}", tags=["Menu"], status_code=200)
 async def searchMenubyId(id:UUID4,response: Response):
     servicesPO = SearchById_Menu_Parameter(id)
@@ -44,6 +47,7 @@ async def searchMenubyId(id:UUID4,response: Response):
         response.status_code = status.HTTP_200_OK
     return response_body
     
+
 @MenuController.get("/Menus", tags=["Menu"], status_code=200)
 async def searchMenuAll(response: Response):
     servicesPO = SearchAll_Menu_Parameter()
@@ -55,6 +59,7 @@ async def searchMenuAll(response: Response):
         response.status_code = status.HTTP_200_OK
     return response_body
 
+
 @MenuController.delete("/Menu/{id}", tags=["Menu"], status_code=200)
 async def deleteMenu(id:UUID4,response: Response):
     servicesPO = Delete_Menu_Parameter(id)
@@ -65,6 +70,7 @@ async def deleteMenu(id:UUID4,response: Response):
     else:  
         response.status_code = status.HTTP_200_OK
     return response_body
+
 
 @MenuController.put("/Menu/{id}", tags=["Menu"], status_code=200)
 async def updateMenu(dto:MenuUpdateDTO,response: Response):

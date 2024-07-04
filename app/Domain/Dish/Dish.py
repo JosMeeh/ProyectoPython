@@ -1,13 +1,11 @@
-#Agregado de Platillos
-""" 
-- id_Dish: Id_Dish- name_Dish:Name_Dish
-- description_Dish:Description_Dish
-- price_Dish: Price_Dish
-- recipe: Recipe
-"""
 from app.Domain.Dish.Dish_VO import Description_Dish, Id_Dish, Name_Dish, Price_Dish, Recipe
 
+"""
+    <<Agregado Platillo>>
 
+    values_objects:
+        Id, Name, Description, Price, Recipe
+"""
 class Dish:
     def __init__(self, id:Id_Dish, name:Name_Dish, description:Description_Dish, price:Price_Dish, recipe:Recipe = None):
         self.__id_Dish          = id
