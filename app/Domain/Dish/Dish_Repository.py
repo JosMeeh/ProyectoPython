@@ -2,7 +2,10 @@ from abc import ABC, abstractmethod
 from app.Domain.Dish.Dish import Dish
 from app.Domain.Dish.Dish_VO import Description_Dish, Id_Dish, Name_Dish, Price_Dish, Recipe
 
-
+"""
+    <<Repository>>
+    Interfaz para repositorios de agregado platillo
+"""
 class Dish_Repository(ABC):
     @abstractmethod
     async def searchDishbyId(self, id:Id_Dish) -> Dish:
