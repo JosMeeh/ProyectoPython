@@ -1,4 +1,5 @@
 <<<<<<<< HEAD:alembic/versions/9d9fd2e3b90e_ordernes.py
+<<<<<<<< HEAD:alembic/versions/9d9fd2e3b90e_ordernes.py
 """Ordernes
 
 Revision ID: 9d9fd2e3b90e
@@ -11,6 +12,13 @@ Revision ID: a795c1a8e5ee
 Revises: 
 Create Date: 2024-07-03 20:31:38.576115
 >>>>>>>> 3b75606 (Add deleted):alembic/versions/a795c1a8e5ee_nombre_de_migracion.py
+========
+"""Nombre de migracion
+
+Revision ID: a795c1a8e5ee
+Revises: 
+Create Date: 2024-07-03 20:31:38.576115
+>>>>>>>> c9e15c6 (Add deleted):alembic/versions/a795c1a8e5ee_nombre_de_migracion.py
 
 """
 from typing import Sequence, Union
@@ -21,10 +29,14 @@ import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 <<<<<<<< HEAD:alembic/versions/9d9fd2e3b90e_ordernes.py
+<<<<<<<< HEAD:alembic/versions/9d9fd2e3b90e_ordernes.py
 revision: str = '9d9fd2e3b90e'
 ========
 revision: str = 'a795c1a8e5ee'
 >>>>>>>> 3b75606 (Add deleted):alembic/versions/a795c1a8e5ee_nombre_de_migracion.py
+========
+revision: str = 'a795c1a8e5ee'
+>>>>>>>> c9e15c6 (Add deleted):alembic/versions/a795c1a8e5ee_nombre_de_migracion.py
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
