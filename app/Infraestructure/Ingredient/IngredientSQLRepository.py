@@ -4,6 +4,7 @@ from app.Domain.Ingredient.Ingredient_VO import Id_Ingredient, Name_Ingredient, 
 from app.Infraestructure.Database.dataBaseConfig import dataBaseSession, IngredientBD
 from app.Domain.Ingredient.Ingredient_Factory import Ingredient_Factory
 
+# Implementacion del repositorio de Ingredientes
 
 class IngredientSQLRepository(Ingredient_Repository):
     def __init__(self) -> None:
@@ -49,7 +50,7 @@ class IngredientSQLRepository(Ingredient_Repository):
             return e
 
 #Eliminar un ingrediente
-    async def deleteIngredient(self, id: Id_Ingredient) -> bool:
+    async def deleteIngredient(self, id: Id_Ingredient) -> Ingredient:
         try:
             deleted_ingredients = self.__database.deleteIngredientsOfDish(id.id)
             delete_ingredient: Ingredient = await self.searchIngredientbyId(id)

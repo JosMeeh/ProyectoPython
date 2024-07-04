@@ -21,7 +21,7 @@ services.addService(Service_Type.Query_all, SearchAll_Ingredient_Service(reposit
 services.addService(Service_Type.Command_Delete, Delete_Ingredient_Service(repository=repositorySQL))
 services.addService(Service_Type.Command_Update, Update_Ingredient_Service(repository=repositorySQL))
 
-
+# Controlador con los endpoints definidos para la gestion de inventario
 @IngredientController.post("/Ingredient", tags=["Ingredient"], status_code=200)
 async def createIngredient(dto: IngredientDTO):
     servicesPO = Create_Ingredient_Parameter(dto.name, dto.amount)

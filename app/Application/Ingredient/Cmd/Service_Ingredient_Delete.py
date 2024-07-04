@@ -7,13 +7,15 @@ from app.Domain.Ingredient.Ingredient_VO import Id_Ingredient
 from app.Domain.Ingredient.Ingredient import Ingredient
 from app.Domain.Ingredient.Ingredient_Repository import Ingredient_Repository
 
+# Servicio para eliminar un ingrediente
 
+# Define los parametros que va a recibir el servicio
 class Delete_Ingredient_Parameter(IService_Parameter):
     def __init__(self, id: str) -> None:
         super().__init__(Service_Type.Command_Delete)
         self.id = id
 
-
+# Define la respuesta que va a devilver el servicio
 class Delete_Ingredient_Response(IService_Response):
     def __init__(self, id: str, name: str, amount: int) -> None:
         super().__init__(Result_Type.Result)
@@ -21,10 +23,10 @@ class Delete_Ingredient_Response(IService_Response):
         self.name = name
         self.amount = amount
 
-
-class Delete_Ingredient_Service(IService_Response):
+#Servicio para la eliminacion de un ingrediente
+class Delete_Ingredient_Service(IService):
     def __init__(self, repository: Ingredient_Repository) -> None:
-        super().__init__(Result_Type.Result)
+        super().__init__()
         self.__repository = repository
         self.__factory = Ingredient_Factory()
 
@@ -46,6 +48,9 @@ class Delete_Ingredient_Service(IService_Response):
             search_ingredient.amount_Ingredient.amount,
         )
 
-        deleted_ingredient: bool | Exception = await self.__repository.deleteIngredient(id_ingredient)
-
+        deleted_ingredient: Ingredient | Exception = await self.__repository.deleteIngredient(id_ingredient)
+        # VALIDAR QUE SE HA BUSCADO EL AGREGADO CORRECTAMENTE:
+        if isinstance(deleted_ingredient, Exception):
+            return Error_Response(deleted_ingredient)
+        # -----
         return response
