@@ -22,28 +22,28 @@ services.addService(Service_Type.Command_Delete, Delete_Ingredient_Service(repos
 services.addService(Service_Type.Command_Update, Update_Ingredient_Service(repository=repositorySQL))
 
 
-@IngredientController.post("/Ingredient")
+@IngredientController.post("/Ingredient", tags=["Ingredient"], status_code=200)
 async def createIngredient(dto: IngredientDTO):
     servicesPO = Create_Ingredient_Parameter(dto.name, dto.amount)
     return await services.execute(servicesPO)
 
 
-@IngredientController.get("/Ingredient/{id}")
+@IngredientController.get("/Ingredient/{id}", tags=["Ingredient"], status_code=200)
 async def searchIngredientbyId(id:UUID4):
     servicesPO = SearchById_Ingredient_Parameter(id)
     return await services.execute(servicesPO)
 
-@IngredientController.get("/Ingredient")
+@IngredientController.get("/Ingredient", tags=["Ingredient"], status_code=200)
 async def searchIngredientAll():
     servicesPO = SearchAll_Ingredient_Parameter()
     return await services.execute(servicesPO)
 
-@IngredientController.delete("/Ingredient/{id}")
+@IngredientController.delete("/Ingredient/{id}", tags=["Ingredient"], status_code=200)
 async def deleteIngredient(id:UUID4):
     servicesPO = Delete_Ingredient_Parameter(id)
     return await services.execute(servicesPO)
 
-@IngredientController.put("/Ingredient/{id}")
+@IngredientController.put("/Ingredient/{id}", tags=["Ingredient"], status_code=200)
 async def updateIngredient(dto:IngredientUpdateDTO):
     servicesPO = Update_Ingredient_Parameter(dto.id, dto.name, dto.amount)
     return await services.execute(servicesPO)
