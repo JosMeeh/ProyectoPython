@@ -82,6 +82,7 @@ class Delete_Dish_Service(IService):
                     ingredient_list.append((ingredient.name_Ingredient.name, i[1]))
             response.recipe = (ingredient_list, search_dish.recipe.instructions)
 
+
         #Eliminar platillo de la base de datos
         deleted_dish:Dish | Exception = await self.__repository.deleteDish(id_dish)
 

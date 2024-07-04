@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from app.Application.Dish.Query.Service_Dish_ById import SearchById_Dish_Response
 from app.Application.shared.IService import IService, IService_Parameter, IService_Response, Result_Type, Service_Type
 from app.Application.shared.Error_Response import Error_Response
