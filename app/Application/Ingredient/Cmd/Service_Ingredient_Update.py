@@ -7,7 +7,7 @@ from app.Domain.Ingredient.Ingredient_VO import Id_Ingredient
 from app.Domain.Ingredient.Ingredient import Ingredient
 from app.Domain.Ingredient.Ingredient_Repository import Ingredient_Repository
 
-
+# Define los parametros que va a recibir el servicio
 class Update_Ingredient_Parameter(IService_Parameter):
     def __init__(self, id: str, name: str, amount: int) -> None:
         super().__init__(Service_Type.Command_Update)
@@ -16,9 +16,7 @@ class Update_Ingredient_Parameter(IService_Parameter):
         self.name = name
         self.amount = amount
 
-
-
-
+# Define la respuesta que va a devilver el servicio
 class Update_Ingredient_Response(IService_Response):
     def __init__(self, id: str, name: str, amount: int) -> None:
         super().__init__(Result_Type.Result)
@@ -27,9 +25,9 @@ class Update_Ingredient_Response(IService_Response):
         self.amount = amount
 
 """ 
+Servicio para la modificacion de un ingrediente
 
 """
-
 
 class Update_Ingredient_Service(IService):
     def __init__(self, repository: Ingredient_Repository) -> None:
@@ -37,14 +35,16 @@ class Update_Ingredient_Service(IService):
         self.__repository = repository
         self.__factory = Ingredient_Factory()
 
-    async def execute(self, servicePO: Update_Ingredient_Parameter) -> IService_Response:
 
+    async def execute(self, servicePO: Update_Ingredient_Parameter) -> IService_Response:
+        # Se crea un nuevo ingrediente con la fabrica
         new_ingredient = self.__factory.create(
             servicePO.id,
             servicePO.name,
             servicePO.amount
         )
 
+        # Se actualiza en la base de datos
         updated_ingredient: Ingredient | None | Exception = await self.__repository.updateIngredient(
             new_ingredient.getId(),
             new_ingredient.name_Ingredient,

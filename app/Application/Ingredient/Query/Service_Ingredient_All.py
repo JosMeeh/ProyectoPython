@@ -9,13 +9,15 @@ from app.Domain.Ingredient.Ingredient_VO import Id_Ingredient
 from app.Domain.Ingredient.Ingredient_Repository import Ingredient_Repository
 from app.Domain.Ingredient.Ingredient import Ingredient
 
+# Servicio para listar todos los ingredientes del sistema
 
+# Define los parametros que va a recibir el servicio
 class SearchAll_Ingredient_Parameter(IService_Parameter):
     def __init__(self) -> None:
         super().__init__(Service_Type.Query_all)
         self.id = id
 
-
+# Define la respuesta del servicio
 class SearchAll_Ingredient_Response(IService_Response):
     def __init__(self, ingredients: list[SearchById_Ingredient_Response]) -> None:
         super().__init__(Result_Type.Result)
@@ -23,6 +25,7 @@ class SearchAll_Ingredient_Response(IService_Response):
 
 
 """ 
+Servicio de listar los ingredientes del sistema
 
 """
 

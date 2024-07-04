@@ -1,3 +1,5 @@
+# Value Objets del Ingrediente
+
 """
     <<Value Object>>
     - id del ingrediente
@@ -7,10 +9,12 @@ class Id_Ingredient:
     def __init__(self, id:str) -> None:
         self.__id = id
 
+    # Getter
     @property
     def id(self):
         return self.__id
 
+    # Setter
     def setId(id: str) -> 'Id_Ingredient':
         return Id_Ingredient(id)
 
@@ -28,10 +32,12 @@ class Name_Ingredient:
         else:
             self.__name = name[0:100]
 
+    # Getter
     @property
     def name(self):
         return self.__name
 
+    # Setter
     def setName(name: str) -> 'Name_Ingredient':
         return Name_Ingredient(name)
 
@@ -49,9 +55,11 @@ class Amount_Ingredient:
         else:
             self.__amount = 0
 
+    # Getter
     @property
     def amount(self):
         return self.__amount
 
+    # Setter
     def setAmount(amount: int) -> 'Amount_Ingredient':
         return Amount_Ingredient(amount)
