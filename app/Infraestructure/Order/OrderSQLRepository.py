@@ -19,6 +19,7 @@ class OrderSQLRepository(Order_Repository):
         self.__factory = Order_Factory()
 
     async def searchOrderDishes(self, id:str):
+
         list_orders:list[Order_DishesBD] | None = self.__database.findDishesofOrder(id)
         order_dish_list:list[tuple[str,int]] = []
         if len(list_orders) != 0:
@@ -40,7 +41,20 @@ class OrderSQLRepository(Order_Repository):
             return e
 
     async def searchAllOrder(self) -> list[Order]:
-        pass
+        try:
+
+            order_db= self.__database.findAllInDatabase(OrderDB)
+            order_dishes: list[Order] = []
+            for orders_all in order_db:
+                order: Order = self.__factory.create(orders_all.id, orders_all.client_name,orders_all.price,None)
+                print("PORQUE NO IMPRIMES ESTA BASURA COÑOOOOOOOO")
+                print(orders_all.id)
+                order_dishess = await self.searchOrderDishes(orders_all.id)
+                order.Order_dishes = order_dishess
+                order_dishes.append(order)
+            return order_dishes
+        except Exception as e:
+            return e
 
     async def addOrder(self, order:Order,order_dishes_list: list[tuple[str,int]]) -> Order:
         new_order = OrderDB(
@@ -62,5 +76,14 @@ class OrderSQLRepository(Order_Repository):
         except Exception as e:
             return e
 
-    async def deleteOrder(self, id:Order_ID) -> bool:
-        pass
+    async def deleteOrder(self, id:str) -> bool:
+        try:
+            deleted_order_dishes = self.__database.deletDishofOrders(id)
+            delete_order: Order = await self.searchOrderbyId(id)
+            deleted = self.__database.deleteInDatabase(OrderDB, id)
+            if deleted:
+                return delete_order
+            else:
+                return None
+        except Exception as e:
+            return e

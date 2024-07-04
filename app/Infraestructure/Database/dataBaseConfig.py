@@ -67,6 +67,14 @@ class dataBaseSession():
     def findDishesofOrder(id:str):
         Instance_object = session.query(Order_DishesBD).filter(Order_DishesBD.id_Order == id).all()
         return Instance_object
+
+    def deletDishofOrders(id:str):
+        Delete_Object = session.query(Order_DishesBD).filter(Order_DishesBD.id_Order == id).delete(synchronize_session=False)
+        if Delete_Object:
+            session.commit()
+            return True
+        else: False
+
     def deleteIngredientsOfDish(id:str):
         Delete_Object = session.query(Recipe_IngredientBD).filter(Recipe_IngredientBD.id_Dish == id).delete(synchronize_session=False)
         if Delete_Object:
