@@ -13,13 +13,15 @@ from app.Domain.Ingredient.Ingredient import Ingredient
 from app.Domain.Ingredient.Ingredient_Repository import Ingredient_Repository
 from app.Domain.Ingredient.Ingredient_VO import Id_Ingredient
 
+# Servicio para consultar una orden por id
 
+# Define los parametros que va a recibir el servicio
 class SearchById_Order_Parameter(IService_Parameter):
     def __init__(self, id: str) -> None:
         super().__init__(Service_Type.Query_by_Id)
         self.id = id
 
-
+# Define la respuesta del servicio
 class SearchById_Order_Response(IService_Response):
     def __init__(self, id: str, client_name: str,  price: float,
                  order_dish_list: list[tuple[str, int]]) -> None:

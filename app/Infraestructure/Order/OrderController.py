@@ -18,6 +18,7 @@ services.addService(Service_Type.Command_Create, Create_Order_Service(repository
 services.addService(Service_Type.Query_by_Id, SearchById_Order_Service(repository=repositorySQL, dish_repository=repositorySQL_Dish))
 services.addService(Service_Type.Query_all, SearchAll_Order_Service(repository=repositorySQL, dish_repository=repositorySQL_Dish))
 
+# Controlador con los endpoints definidos para la gestion de ordenes
 @OrderController.post("/Order")
 async def createOrder(dto:OrderDTO):
     servicesPO = Create_Order_Parameter(dto.client_name,dto.mount,dto.order_dishes_list)

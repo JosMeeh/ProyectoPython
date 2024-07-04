@@ -15,12 +15,16 @@ from app.Domain.Ingredient.Ingredient_Repository import Ingredient_Repository
 from app.Domain.Ingredient.Ingredient_VO import Id_Ingredient
 from app.Application.Order.Query.Service_Order_Byid import SearchById_Order_Response
 
+# Servicio para listar todos las ordenes del sistema
+
+# Define los parametros que va a recibir el servicio
+
 class SearchAll_Order_Parameter(IService_Parameter):
     def __init__(self) -> None:
         super().__init__(Service_Type.Query_all)
         self.id = id
 
-
+# Define la respuesta del servicio
 class SearchAll_Order_Response(IService_Response):
     def __init__(self, orders: list[SearchById_Order_Response]) -> None:
         super().__init__(Result_Type.Result)
@@ -58,13 +62,6 @@ class SearchAll_Order_Service(IService):
                 order.Order_Mount,
                 None
             )
-
-            order_dishes_list: list[tuple[str, int]] = []
-            for i in dish.recipe.ingredients:
-                ingredient: Ingredient | Exception = await self.__foodrepository.searchIngredientbyId(i[0])
-                if not isinstance(ingredient, Exception):
-                    ingredient_list.append((ingredient.name_Ingredient.name, i[1]))
-            response.recipe = (ingredient_list, dish.recipe.instructions)
 
         dishes_response.append(response)
         return orders_response
