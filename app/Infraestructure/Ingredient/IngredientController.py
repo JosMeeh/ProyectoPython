@@ -21,6 +21,7 @@ services.addService(Service_Type.Query_all, SearchAll_Ingredient_Service(reposit
 services.addService(Service_Type.Command_Delete, Delete_Ingredient_Service(repository=repositorySQL))
 services.addService(Service_Type.Command_Update, Update_Ingredient_Service(repository=repositorySQL))
 
+
 # Controlador con los endpoints definidos para la gestion de inventario
 @IngredientController.post("/Ingredient", tags=["Ingredient"], status_code=200)
 async def createIngredient(dto: IngredientDTO):
@@ -28,10 +29,12 @@ async def createIngredient(dto: IngredientDTO):
     return await services.execute(servicesPO)
 
 
+
 @IngredientController.get("/Ingredient/{id}", tags=["Ingredient"], status_code=200)
 async def searchIngredientbyId(id:UUID4):
     servicesPO = SearchById_Ingredient_Parameter(id)
     return await services.execute(servicesPO)
+
 
 @IngredientController.get("/Ingredient", tags=["Ingredient"], status_code=200)
 async def searchIngredientAll():

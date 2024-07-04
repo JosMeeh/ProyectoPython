@@ -19,21 +19,22 @@ services.addService(Service_Type.Query_by_Id, SearchById_Order_Service(repositor
 services.addService(Service_Type.Query_all, SearchAll_Order_Service(repository=repositorySQL, dish_repository=repositorySQL_Dish))
 
 # Controlador con los endpoints definidos para la gestion de ordenes
-@OrderController.post("/Order")
+
+@OrderController.post("/Order",  tags=["Order"])
 async def createOrder(dto:OrderDTO):
     servicesPO = Create_Order_Parameter(dto.client_name,dto.mount,dto.order_dishes_list)
     return await services.execute(servicesPO)
 
-@OrderController.get("/Order/{id}")
+@OrderController.get("/Order/{id}",  tags=["Order"])
 async def searchOrderbyId(id:str):
     servicesPO = SearchById_Order_Parameter(id)
     return await services.execute(servicesPO)
 
-@OrderController.get("/order")
+@OrderController.get("/order",  tags=["Order"])
 async def searchOrderAll():
     servicesPO = SearchAll_Order_Parameter()
     return await services.execute(servicesPO)
 
-@OrderController.delete("/Order/{id}")
+@OrderController.delete("/Order/{id}",  tags=["Order"])
 async def deleteDish(id:str):
     return await repositorySQL.deleteOrder(id)
