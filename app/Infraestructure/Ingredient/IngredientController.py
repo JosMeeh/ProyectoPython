@@ -17,13 +17,13 @@ repositorySQL = IngredientSQLRepository()
 services.addService(Service_Type.Command_Create, Create_Ingredient_Service(repository=repositorySQL))
 
 
-@IngredientController.post("/Ingredient")
+@IngredientController.post("/Ingredient",  tags=["Ingredient"])
 async def createIngredient(dto: IngredientDTO):
     servicesPO = Create_Ingredient_Parameter(dto.name, dto.amount)
     return await services.execute(servicesPO)
 
 
-@IngredientController.get("/Ingredient/{id}")
+@IngredientController.get("/Ingredient/{id}",  tags=["Ingredient"])
 async def createIngredient(id: str):
     test_ingredient = await repositorySQL.searchIngredientbyId(Id_Ingredient(id))
     jsonIngredient = {"id": test_ingredient.getId(), "name": test_ingredient.name_Ingredient, "amount": test_ingredient.amount_Ingredient}
