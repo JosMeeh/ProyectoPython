@@ -42,7 +42,7 @@ class SearchAll_Dish_Service(IService):
         if isinstance(saved_dishes,Exception):
             return Error_Response(saved_dishes)
         #-----
-
+        
         #CREAR RESPONSE
         dishes_response:list[SearchById_Dish_Response] = []
         for dish in saved_dishes:
@@ -62,5 +62,4 @@ class SearchAll_Dish_Service(IService):
                 response.recipe = (ingredient_list, dish.recipe.instructions)
 
             dishes_response.append(response)
-
-        return dishes_response
+        return SearchAll_Dish_Response(dishes_response)
