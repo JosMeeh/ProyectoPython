@@ -1,4 +1,5 @@
 # Agregado de Ingredient
+# Este agregado permitira la gestion de inventarios, para tener actualizados los ingredientes disponibles
 
 from app.Domain.Ingredient.Ingredient_VO import Id_Ingredient, Name_Ingredient, Amount_Ingredient
 
@@ -9,6 +10,7 @@ class Ingredient:
         self.__name_Ingredient = name
         self.__amount_Ingredient = amount
 
+# Getters y Setters
     def getId(self) -> Id_Ingredient:
         return self.__id_Ingredient
 

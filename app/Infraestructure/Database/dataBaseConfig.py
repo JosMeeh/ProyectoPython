@@ -7,6 +7,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.dialects.postgresql import UUID
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
 DB_HOST = os.environ.get('POSTGRES_SERVER')

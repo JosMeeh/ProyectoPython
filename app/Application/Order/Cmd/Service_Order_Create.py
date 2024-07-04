@@ -5,7 +5,9 @@ from app.Domain.Order.Order_Factory import Order_Factory
 from app.Domain.Order.Order import Order
 from app.Domain.Order.Order_Repository import Order_Repository
 
+# Servicio para crear una orden
 
+# Define los parametros que va a recibir el servicio
 class Create_Order_Parameter(IService_Parameter):
     def __init__(self, client_name:str, mount:float, order_dishes:list[tuple[str, int]]) -> None:
         super().__init__(Service_Type.Command_Create)
@@ -13,6 +15,7 @@ class Create_Order_Parameter(IService_Parameter):
         self.mount = mount
         self.order_dishes = order_dishes
 
+# Define la respuesta que devolvera el servicio
 class Create_Dish_Response(IService_Response):
     def __init__(self, client_name:str, mount:float, order_dishes:list[tuple[str, int]]) -> None:
         super().__init__(Result_Type.Result)

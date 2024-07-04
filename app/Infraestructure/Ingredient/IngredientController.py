@@ -1,31 +1,52 @@
 ##Todos los controladores/endpoints de usuario aca
-from app.Application.Dish.Cmd.Service_Dish_Create import Create_Dish_Parameter, Create_Dish_Service
-from app.Application.Ingredient.Cmd.Service_Ingredient_Create import Create_Ingredient_Service, \
-    Create_Ingredient_Parameter
+from pydantic import UUID4
+from app.Application.Ingredient.Cmd.Service_Ingredient_Create import Create_Ingredient_Parameter, Create_Ingredient_Service
 from app.Application.shared.IService import Service_Type
 from app.Application.shared.Service_Handler import Service_Handler
-from fastapi import APIRouter
-
-from app.Domain.Ingredient.Ingredient_VO import Id_Ingredient
-from app.Infraestructure.Dtos.IngredientDTO import IngredientDTO
-from app.Domain.Dish.Dish_VO import Description_Dish, Id_Dish, Name_Dish, Price_Dish, Recipe
 from app.Infraestructure.Ingredient.IngredientSQLRepository import IngredientSQLRepository
+from fastapi import APIRouter
+from app.Infraestructure.Dtos.IngredientDTO import IngredientDTO, IngredientUpdateDTO
+from app.Application.Ingredient.Query.Service_Ingredient_ById import SearchById_Ingredient_Service, SearchById_Ingredient_Parameter
+from app.Application.Ingredient.Query.Service_Ingredient_All import SearchAll_Ingredient_Service, SearchAll_Ingredient_Parameter
+from app.Infraestructure.Ingredient.IngredientSQLRepository import IngredientSQLRepository
+from app.Application.Ingredient.Cmd.Service_Ingredient_Delete import Delete_Ingredient_Service, Delete_Ingredient_Parameter
+from app.Application.Ingredient.Cmd.Service_Ingredient_Update import Update_Ingredient_Parameter, Update_Ingredient_Service
 
 IngredientController = APIRouter()
 services: Service_Handler = Service_Handler()
 repositorySQL = IngredientSQLRepository()
 services.addService(Service_Type.Command_Create, Create_Ingredient_Service(repository=repositorySQL))
+services.addService(Service_Type.Query_by_Id, SearchById_Ingredient_Service(repository=repositorySQL))
+services.addService(Service_Type.Query_all, SearchAll_Ingredient_Service(repository=repositorySQL))
+services.addService(Service_Type.Command_Delete, Delete_Ingredient_Service(repository=repositorySQL))
+services.addService(Service_Type.Command_Update, Update_Ingredient_Service(repository=repositorySQL))
 
 
-@IngredientController.post("/Ingredient",  tags=["Ingredient"])
+# Controlador con los endpoints definidos para la gestion de inventario
+@IngredientController.post("/Ingredient", tags=["Ingredient"], status_code=200)
 async def createIngredient(dto: IngredientDTO):
     servicesPO = Create_Ingredient_Parameter(dto.name, dto.amount)
     return await services.execute(servicesPO)
 
 
-@IngredientController.get("/Ingredient/{id}",  tags=["Ingredient"])
-async def createIngredient(id: str):
-    test_ingredient = await repositorySQL.searchIngredientbyId(Id_Ingredient(id))
-    jsonIngredient = {"id": test_ingredient.getId(), "name": test_ingredient.name_Ingredient, "amount": test_ingredient.amount_Ingredient}
-    return jsonIngredient
 
+@IngredientController.get("/Ingredient/{id}", tags=["Ingredient"], status_code=200)
+async def searchIngredientbyId(id:UUID4):
+    servicesPO = SearchById_Ingredient_Parameter(id)
+    return await services.execute(servicesPO)
+
+
+@IngredientController.get("/Ingredient", tags=["Ingredient"], status_code=200)
+async def searchIngredientAll():
+    servicesPO = SearchAll_Ingredient_Parameter()
+    return await services.execute(servicesPO)
+
+@IngredientController.delete("/Ingredient/{id}", tags=["Ingredient"], status_code=200)
+async def deleteIngredient(id:UUID4):
+    servicesPO = Delete_Ingredient_Parameter(id)
+    return await services.execute(servicesPO)
+
+@IngredientController.put("/Ingredient/{id}", tags=["Ingredient"], status_code=200)
+async def updateIngredient(dto:IngredientUpdateDTO):
+    servicesPO = Update_Ingredient_Parameter(dto.id, dto.name, dto.amount)
+    return await services.execute(servicesPO)

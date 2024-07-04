@@ -5,14 +5,16 @@ from app.Domain.Ingredient.Ingredient_Factory import Ingredient_Factory
 from app.Domain.Ingredient.Ingredient_Repository import Ingredient_Repository
 from app.Domain.Ingredient.Ingredient import Ingredient
 
+# Servicio para crear un ingrediente
 
+# Define los parametros que va a recibir el servicio
 class Create_Ingredient_Parameter(IService_Parameter):
     def __init__(self, name: str, amount: int) -> None:
         super().__init__(Service_Type.Command_Create)
         self.name = name
         self.amount = amount
 
-
+# Define la respuesta que va a devilver el servicio
 class Create_Ingredient_Response(IService_Response):
     def __init__(self, name: str, amount: int) -> None:
         super().__init__(Result_Type.Result)
@@ -21,9 +23,9 @@ class Create_Ingredient_Response(IService_Response):
 
 
 """ 
+Servicio para la creacion de un ingrediente
 
 """
-
 
 class Create_Ingredient_Service(IService):
     def __init__(self, repository: Ingredient_Repository) -> None:
@@ -33,7 +35,6 @@ class Create_Ingredient_Service(IService):
 
     async def execute(self, servicePO: Create_Ingredient_Parameter) -> IService_Response:
         # crear con fabrica el Agregado Ingredient
-
         new_ingredient: Ingredient = self.__factory.create(
             "--",
             servicePO.name,
@@ -47,7 +48,7 @@ class Create_Ingredient_Service(IService):
             return Error_Response(saved_ingredient)
         # -----
 
-        # CREAR RESPONSE
+        # Se crea el response
         response = Create_Ingredient_Response(
             servicePO.name,
             servicePO.amount
