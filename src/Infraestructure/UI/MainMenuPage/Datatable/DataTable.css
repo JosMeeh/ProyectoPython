@@ -1,0 +1,58 @@
+/* Estilos para el modo claro */
+.data-table-container {
+    background-color: white; /* Fondo blanco para el contenedor de la tabla */
+}
+
+.data-table {
+    width: 100%; /* Asegúrate de que la tabla ocupe todo el ancho disponible */
+    border-collapse: collapse; /* Colapsar bordes de la tabla */
+}
+
+.data-table-header {
+    background-color: #007bff; /* Color de fondo para el encabezado */
+    color: white; /* Texto blanco en el encabezado */
+    padding: 8px; /* Espaciado interno del encabezado reducido para mayor legibilidad */
+    text-align: left; /* Alinear texto a la izquierda */
+    border: 1px solid black; /* Borde negro alrededor del encabezado */
+}
+
+.data-table-row:nth-child(even) {
+    background-color: #f2f2f2; /* Color de fondo alternativo para filas pares */
+}
+
+.data-table-row:hover {
+    background-color: #e8f0fe; /* Color de fondo al pasar el mouse sobre la fila */
+}
+
+.data-table-cell {
+    padding: 8px; /* Espaciado interno de las celdas reducido para mayor legibilidad */
+    border: 1px solid black; /* Borde negro para las celdas */
+    text-align: left; /* Alinear texto a la izquierda */
+    color: black; /* Texto negro en las celdas */
+}
+
+/* Ignorar el modo oscuro del navegador */
+@media (prefers-color-scheme: dark) {
+    .data-table-container {
+        background-color: white !important; /* Asegurarse de que el fondo sea blanco en modo oscuro */
+    }
+
+    .data-table-header {
+        background-color: #007bff !important; /* Color de fondo para el encabezado */
+        color: white !important; /* Texto blanco en el encabezado */
+        border: 1px solid black !important; /* Borde negro alrededor del encabezado en modo oscuro */
+    }
+
+    .data-table-row:nth-child(even) {
+        background-color: #f2f2f2 !important; /* Color de fondo alternativo para filas pares */
+    }
+
+    .data-table-row:hover {
+        background-color: #e8f0fe !important; /* Color de fondo al pasar el mouse sobre la fila */
+    }
+
+    .data-table-cell {
+        color: black !important; /* Texto negro en las celdas */
+        border: 1px solid black !important; /* Borde negro para las celdas en modo oscuro */
+    }
+}
