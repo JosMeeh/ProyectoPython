@@ -1,0 +1,42 @@
+/* Estilo general para el cuerpo de la página */
+
+/* Estilo de la tabla */
+.table-container {
+    max-height: 430px; /* Altura máxima del contenedor */
+    overflow-y: auto; /* Habilita el desplazamiento vertical */
+    border: none; /* Borde alrededor del contenedor (opcional) */
+    margin-bottom: 30px; /* Espaciado inferior opcional */
+    margin-top: 10px;
+    width: 100%; /* Asegúrate de que el contenedor ocupe todo el espacio disponible */
+}
+
+table {
+    width: 100%; /* Cambiado a 100% para ocupar todo el ancho del contenedor */
+    border-collapse: collapse; /* Elimina espacios entre celdas */
+    background-color: white; /* Fondo blanco para la tabla */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Estilo para los encabezados de la tabla */
+th {
+    background-color: #262626; /* Color de fondo azul */
+    color: white; /* Color del texto en blanco */
+    padding: 12px; /* Espaciado interno */
+    text-align: left; /* Alineación del texto a la izquierda */
+}
+
+/* Estilo para las celdas de la tabla */
+td {
+    padding: 12px; /* Espaciado interno en celdas */
+    border-bottom: 1px solid #dddddd; /* Línea divisoria entre filas */
+}
+
+/* Estilo para las filas al pasar el mouse por encima */
+tr:hover {
+    background-color: #f1f1f1; /* Color de fondo al pasar el mouse */
+}
+
+/* Estilo para las filas alternadas (opcional) */
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Color alternativo para filas pares */
+}
