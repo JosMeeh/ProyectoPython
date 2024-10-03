@@ -1,0 +1,154 @@
+body {
+    min-height: 100vh;
+    width: 50%;
+    overflow-x: hidden;
+}
+
+.menuOfFilters {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    margin-left: -10px;
+    width: 200px;
+    background-color: lightgray;
+    padding: 6px 14px;
+
+}
+
+    .menuOfFilters ul {
+        margin-top: 20px;
+        padding: 0; /* Añadido para eliminar el padding por defecto */
+    }
+
+        .menuOfFilters ul li {
+            position: relative;
+            height: 30px;
+            width: 100%;
+            list-style: none;
+            line-height: 50px;
+        }
+
+
+            .menuOfFilters ul li a {
+                color: #181616;
+                display: flex;
+                align-items: center;
+                font-size: 15px;
+                text-decoration: none;
+                transition: all 0.5s ease;
+                border-radius: 12px;
+                white-space: nowrap;
+            }
+
+                .menuOfFilters ul li a:hover {
+                    color: #181616;
+                    background: #fff;
+                }
+
+            .menuOfFilters ul li i {
+                height: auto;
+                min-width: 50px;
+                border-radius: 10px;
+                line-height: 50px;
+                text-align: center;
+            }
+
+.contenedor {
+    margin-top: 40px;
+}
+
+.divider {
+    border: none; 
+    height: 1px; 
+    background-color: gray; 
+    margin: 10px 0; 
+    width: 100%; 
+}
+
+
+/* Estilo para los inputs de tipo date */
+input[type="date"] {
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 10px; /* Bordes redondeados */
+    width: calc(100% - 22px); /* Ocupa todo el ancho disponible, ajustando por el padding y borde */
+    box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+    /* Asegura que la altura del input coincida con la altura del span (50px) */
+    margin-left: 20px;
+    height: 50px;
+    line-height: normal; /* Normaliza la altura del texto dentro del input */
+}
+
+    /* Cambia el estilo del borde al enfocar el input */
+    input[type="date"]:focus {
+        border-color: #E61D2B; /* Color del borde al enfocar (azul) */
+        outline: none; /* Elimina el contorno predeterminado */
+    }
+
+/* Estilo para las etiquetas de los inputs de fecha */
+label {
+    margin-left: 22px;
+    font-weight: bold; /* Negrita para las etiquetas */
+    margin-bottom: 5px;
+    margin-top: 20px;
+    /* Espacio debajo de las etiquetas */
+    display: block; /* Hace que las etiquetas ocupen toda la línea */
+}
+
+/* Estilo adicional para mejorar la apariencia del input en navegadores compatibles */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background-color: transparent; /* Color del indicador del calendario (azul) */
+}
+
+/* Estilo para ocultar la flecha del selector de fecha en Firefox (opcional) */
+input[type="date"]::-moz-inner-spin-button {
+    display: none; /* Oculta el botón de incremento/decremento en Firefox */
+}
+
+.mainLable{
+    font-size: 18px;
+    text-align:center;
+}
+
+.filterLable {
+    margin-left: 22px;
+    font-size: 15px;
+    text-align: left;
+}
+
+.filterMenuButton {
+    margin-left: 32px; 
+    padding: 8px; /* Relleno para los botones */
+    border: none; /* Sin borde */
+    border-radius: 15px; /* Bordes redondeados */
+    background-color: #E61D2B; /* Color de fondo */
+    color: snow; /* Color del texto */
+    font-size: 14px;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    min-width: 150px; /* Ancho mínimo para los botones */
+}
+
+.Home_content_Filter {
+    position: absolute;
+    top: 0; /* Ensures it starts from the top */
+    height: 100%;
+    left: 220px;
+    transition: all 0.5s ease;
+   
+}
+
+    .Home_content_Filter .text{
+        font-size: 20px;
+        font-weight: 400;
+        color: #181616;
+        text-align: center; /* Centra el texto horizontalmente */
+        margin: 350px 400px; /* Añade margen superior e inferior y centra el div */
+        max-width: 600px; /* Establece un ancho máximo para evitar que el texto se extienda demasiado */
+        min-width: 600px;
+        }
+
+    .Home_content_Filter .text li{
+        list-style:none;
+        z-index:0;
+    }
+

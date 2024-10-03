@@ -1,0 +1,31 @@
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Margen superior */
+    margin-bottom: 20px;
+    width: 350px;
+    margin-left : 10px;
+}
+
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ccc; /* Borde del contenedor */
+    border-radius: 20px; /* Bordes redondeados */
+    overflow: hidden; /* Asegura que el borde redondeado se aplique correctamente */
+    background-color: #fff; /* Color de fondo para el contenedor */
+}
+
+.search-bar {
+    width: 300px; /* Ancho del input */
+    height: 30px; /* Altura del input */
+    border: none; /* Sin borde en el input */
+    padding: 0 10px; /* Espaciado interno */
+    font-size: 14px; /* Tamaño de fuente */
+    outline: none; /* Elimina el borde al enfocar */
+}
+
+.search-bar-container i {
+    padding: 5px; /* Espaciado interno del icono */
+    color: #888; /* Color del icono */
+}
