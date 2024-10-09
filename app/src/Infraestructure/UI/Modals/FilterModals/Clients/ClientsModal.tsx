@@ -9,21 +9,21 @@ export default function ClientsModal({ isOpen, toggleClientModal, selectedItems,
    
     
     const handleButtonClick = (component: 'clientes' | 'rutas' | 'localidades' | 'jefatura' | 'gerencia' | 'canales' | 'cadena' | 'distribucion' | 'nivel' | 'exclusividad') => {
-        setActiveComponent(component); // Establece el componente activo seg˙n el botÛn presionado
+        setActiveComponent(component); // Establece el componente activo seg√∫n el bot√≥n presionado
     };
 
     const renderActiveComponent = () => {
         switch (activeComponent) {
             case 'clientes':
                 return <Search selectedItems={selectedItems} setSelectedItems={setSelectedItems} data={Users} />;
-            // Agrega m·s casos seg˙n los componentes que necesites
+            // Agrega m√°s casos seg√∫n los componentes que necesites
             default:
                 return null; // Retorna null si no hay componente activo
         }
     }
     const handleCloseModal = () => {
         setActiveComponent(null); // Restablece el componente activo a null al cerrar el modal
-        toggleClientModal(); // Llama a la funciÛn para cerrar el modal
+        toggleClientModal(); // Llama a la funci√≥n para cerrar el modal
     }; 
     useEffect(() => {
         if (isOpen) {
@@ -42,7 +42,7 @@ export default function ClientsModal({ isOpen, toggleClientModal, selectedItems,
                             <h2>CLIENTES</h2>
                             <hr className="divider" />
                             <a className={"transparent-text"}>
-                                AquÌ encontrar·s todos los filtros para las caracterÌsticas de clientes y estructura de
+                                Aqu√≠ encontrar√°s todos los filtros para las caracter√≠sticas de clientes y estructura de
                                 ventas
                             </a>
                             <hr className="divider" />
