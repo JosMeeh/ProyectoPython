@@ -1,0 +1,93 @@
+.full-mainmenu {
+    display: flex; /* Usar flex para organizar los elementos horizontalmente */
+    width: 100vw;
+    height: 100vh; /* Asegúrate de que ocupe toda la altura de la ventana */
+    background-color: blueviolet;
+}
+
+.full-homepage {
+    width: 100vw;
+    height: 100vh;
+    background-color: #181616;
+    color: snow;
+}
+
+.header-homepage {
+    padding: 20px;
+    display: flex;
+    flex-direction: row; /* Mantener alineación horizontal */
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center; /* Centrar verticalmente */
+}
+
+.header-buttons-container {
+    margin-left: auto; /* Empuja el contenedor de botones a la derecha */
+    margin-right: 100px;
+    margin-top: 20px;
+    display: flex; /* Activar Flexbox para los botones */
+    gap: 10px; /* Espacio entre los botones */
+}
+
+.homepage-button {
+    padding: 10px 20px; /* Relleno para los botones */
+    border: none; /* Sin borde */
+    border-radius: 20px; /* Bordes redondeados */
+    background-color: #E61D2B; /* Color de fondo */
+    color: snow; /* Color del texto */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Transición suave al cambiar de color */
+    min-width: 150px; /* Ancho mínimo para los botones */
+}
+
+    /* Cambiar el color del botón al pasar el mouse */
+    .homepage-button:hover {
+        background-color: #b51722;
+    }
+
+    .homepage-button:active {
+        background-color: #8c1319; /* Color más oscuro al pulsar */
+    }
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 767px) {
+    .header-homepage {
+        padding: 10px;
+    }
+
+    .header-buttons-container {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 10px;
+        justify-content: center; /* Centrar los botones en pantallas pequeñas */
+    }
+
+    .homepage-button {
+        padding: 8px 16px; /* Ajustar el padding */
+        font-size: 14px; /* Ajustar el tamaño de la fuente */
+        min-width: 120px; /* Ancho mínimo para los botones en pantallas pequeñas */
+    }
+}
+
+/* Media query para pantallas medianas */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .header-homepage {
+        padding: 15px;
+    }
+
+    .header-buttons-container {
+        margin-right: 50px; /* Ajustar el margen derecho */
+        margin-top: 15px;
+    }
+
+    .homepage-button {
+        padding: 10px 20px; /* Mantener el padding */
+        font-size: 15px; /* Ajustar el tamaño de la fuente */
+    }
+}
+
+/* Media query para pantallas grandes */
+@media (min-width: 1024px) {
+    /* Aquí puedes mantener los estilos originales */
+}

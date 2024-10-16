@@ -1,0 +1,171 @@
+body.active-modal {
+    overflow-y: hidden;
+}
+
+.btn-modal {
+    padding: 10px 20px;
+    display: block;
+    margin: 100px auto 0;
+    font-size: 18px;
+}
+
+.modal .overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+.overlay {
+    background: rgba(49,49,49,0.8);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #f1f1f1;
+    padding: 14px 28px;
+    border-radius: 5px;
+    max-width: 700px;
+    min-width: 800px;
+    /*** Add these properties */
+    max-height: calc(100vh - 100px); /* Adjust this value as necessary */
+    overflow-y: hidden; /* Enables vertical scrolling */
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 7px;
+}
+
+.btn-container {
+    position: relative;
+    width: 200px;
+    left: -40px;
+    overflow-y: auto;
+    max-height: 700px;
+    min-width: 220px;
+    margin-right:-20px;
+}
+
+    .btn-container button {
+        background: transparent; /* Fondo transparente */
+        border: 1px solid #ccc; /* Borde sutil con color y opacidad */
+        border-radius: 0px; /* Bordes redondeados para suavizar la apariencia */
+        padding: 14px 24px; /* Espaciado interno para aumentar el tamaño */
+        font-size: 16px; /* Tamaño de fuente del texto */
+        color: #3d3d3d; /* Color del texto */
+        cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+        transition: background-color 0.3s ease, border-color 0.3s ease; /* Transiciones suaves para efectos de hover */
+        width: calc(100% - 2px);
+    }
+
+        .btn-container button:hover {
+            background-color: rgba(0, 0, 0, 0.1); /* Color de fondo al pasar el mouse */
+            border-color: rgba(0, 0, 0, 0.5); /* Cambia el color del borde al pasar el mouse */
+        }
+
+        .btn-container button:focus {
+            background: rgba(230,29, 43, 1); /* Sombra suave al enfocar para accesibilidad */
+            color: #fff;
+        }
+
+
+.divider {
+    border: none; /* Elimina el borde predeterminado */
+    height: 1px; /* Define el grosor de la línea */
+    background-color: #ccc; /* Color de la línea */
+    margin: 20px 0; /* Espacio arriba y abajo de la línea */
+    width: 100%; /* Ancho completo del modal-content */
+}
+
+.transparent-text {
+    opacity: 100%;
+    color: #36454F;
+}
+
+.btn-close {
+    position: absolute; /* Posición absoluta para colocarlo en la esquina */
+    top: 10px; /* Distancia desde la parte superior */
+    right: 10px; /* Distancia desde la derecha */
+    background: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+    font-size: 20px; /* Tamaño de fuente */
+    color: #36454F; /* Color del texto */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: color 0.3s ease; /* Transición suave para el color */
+}
+
+/* Media Queries para pantallas pequeñas */
+@media screen and (max-width: 430px) {
+    body.active-modal {
+        overflow-y: auto; /* Permitir desplazamiento en el cuerpo cuando el modal está activo */
+    }
+
+    .modal-content {
+        max-width: 90%; /* Ancho máximo reducido para pantallas pequeñas */
+        min-width: auto; /* Eliminar restricción de ancho mínimo */
+        padding: 12px; /* Ajustar padding para que se vea mejor en móviles */
+        margin-top: 10%; /* Ajustar el margen superior para centrar mejor el modal verticalmente */
+    }
+
+    .btn-modal {
+        padding: 8px 16px; /* Reducir tamaño del botón */
+        font-size: 16px; /* Tamaño de fuente reducido para el botón */
+        margin: 20px auto; /* Ajustar margen superior para móviles */
+    }
+
+    .btn-container button {
+        width: 120px;
+        font-size: 14px; /* Tamaño de fuente más pequeño para botones */
+        padding: 8px; /* Ajustar padding para botones */
+    }
+
+    .transparent-text {
+        font-size: 12px; /* Tamaño de texto ajustado para mejor legibilidad */
+    }
+
+    .close-modal,
+    .btn-close {
+        font-size: 16px; /* Tamaño ajustado para los botones de cerrar en móviles */
+        top: 5px; /* Ajustar posición en móviles */
+        right: 5px;
+    }
+}
+
+.modal-body {
+    display: flex;
+    margin-right: 5px;
+    max-width: 700px; /* Establece un ancho máximo si es necesario */
+}
+
+.search-bar-container { /* Espacio entre el contenedor de botones y la barra de búsqueda */
+    flex-grow: 1;
+    overflow-y: hidden; /* Permitir que este contenedor ocupe el espacio restante */
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+    .modal-body {
+        flex-direction: column; /* Apilar verticalmente en pantallas pequeñas */
+        align-items: stretch; /* Estirar elementos a todo lo ancho */
+    }
+
+    .btn-container {
+        width: 100%; /* Ancho completo para el contenedor de botones en pantallas pequeñas */
+        margin-bottom: 20px; /* Espacio debajo del contenedor de botones */
+    }
+
+    .search-bar-container {
+        width: 100%; /* Ancho completo para la barra de búsqueda en pantallas pequeñas */
+        margin-left: 0; /* Eliminar margen izquierdo en pantallas pequeñas */
+    }
+}
