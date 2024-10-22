@@ -1,0 +1,34 @@
+TEMA PARA PENSAR:
+
+- El tema de dto y entidad para filtos esta definido.
+- Los indicadores funjen como (SUM) tener en cuenta otra lista de indicadores(Entidad) y un rango de fecha(Revisar si el json admite rango o hacer un DatePO)
+- Revisar bien como enviar el tema del dia, mes y año, esto quiere decir:
+	- Revisar si vale la pena hacer un controlador por cada periodo de busqueda.
+	- Eso incluye pensar el la idea de usar un solo controlador y recibir el periodo de busqueda(Incluye modificar el dto)
+	- Luego de definir ello haremos el tratamiento de la informacion de los filtros, vamos asegurarnos de que lleguen correctamente
+	- Una vez confirmado los filtros y sus valores, haremos las pruebas de armado de query dinamico. Esto tiene unas consideraciones:
+			- Hay que imprimir el query para saber exactamente que buscara, luego comprobar los valores asignados correctamente.
+			- Probar en el SQLServer el query generado y confirmar que funcione correctamente.
+
+- Realizar el front de pruebas. Esto incluye:
+	- Hacer formulario de login y enviar a la api
+	- Hacer botones de armado de filtro
+
+
+-05/08/2024
+
+-SE DEBE CREAR EL CONTROLADOR PARA SALES, SOBRE TODO LA PARTE DEL DATASET, HAYQ UE VER SI SE CREA CORRECTAMENTE
+-PROBAR, Y CUANDO EL DATASET SEA ACEPTABLE, ENTRAR A CREAR EL DYNAMIC QUERY
+-INVESTIGAR SI EL FRONT PUEDE RECIBIR DATASETS Y VERLOS, EN TODO CASO SE TENDRA QUE JUNTAR A LA CREACION DE ARCHIVO
+- IMPORTANTE TOMAR CON CALMA TODAS ESTAS CONSIDERACIONES.
+
+
+
+AVANCE DE QUERY DINAMICO:
+
+	-logramos mapear entidades segunn el nombre de la tabla, esto es necesario para construir el query
+	-Logramos crear la consulta dinamica a varias tablas para traer toda la informacion (DEBEMOS LEER EL CODIGO Y ENTENDERLO BIEN)
+	-Se debe estudiar el codigo bien ya que fue generado entrenando a perplexity
+	-SE DEBE MODIFICAR PARA LOS SELECTS Y WHERES POR LO QUE NO ESTA COMPLETO EN ABSOLUTO
+	-GRAN AVANCE EL DE HOY, IGUALMENTE NO SE DESCARTAN OTRAS SOLUCIONES PARA GENERAR EL QUERIE
+	-APLICAR HEXAGONAL AL TERMINAR

@@ -1,0 +1,151 @@
+All entities in the model:
+Entity: Am01prodSaptemp, Table: AM01ProdSAPTemp
+Entity: Am01prodTemp, Table: AM01Prod_Temp
+Entity: ArchivosDatamart, Table: archivos_datamart
+Entity: ArticulosExcepcione, Table: ArticulosExcepciones
+Entity: Ayudante, Table: Ayudantes
+Entity: Cadena, Table: cadenas
+Entity: CadenasTemp, Table: cadenas_temp
+Entity: CanalesHomologado, Table: Canales_Homologados
+Entity: CanalesInterfaz, Table: Canales_Interfaz
+Entity: CanalesIsscom, Table: Canales_ISSCOM
+Entity: CanalesIsscomYaja, Table: Canales_ISSCOM_Yaja
+Entity: CategoriasHomologada, Table: Categorias_Homologadas
+Entity: Cliente, Table: Clientes
+Entity: ClientePrueba, Table: ClientePrueba
+Entity: ClientesCanalesNuevo, Table: Clientes_Canales_Nuevo
+Entity: ClientesCoordenada, Table: Clientes_Coordenadas
+Entity: ClientesGecNuevo, Table: Clientes_GEC_Nuevo
+Entity: ClientesInterfaz, Table: Clientes_Interfaz
+Entity: ClientesMetodosNuevo, Table: Clientes_Metodos_Nuevo
+Entity: CuotasProducto, Table: Cuotas_Productos
+Entity: Devolucion, Table: DEVOLUCION
+Entity: Devolucionxsku, Table: DEVOLUCIONXSKU
+Entity: DivPersonalSap, Table: Div_Personal_Sap
+Entity: Dlpfconv, Table: DLPFCONV
+Entity: Email, Table: Emails
+Entity: FactVenta, Table: Fact_Ventas
+Entity: FactVentasMultipack, Table: Fact_Ventas_Multipack
+Entity: FechaCierre, Table: Fecha_Cierre
+Entity: FechaCierreTemp, Table: Fecha_Cierre_Temp
+Entity: FechasInterfazKo, Table: Fechas_Interfaz_KO
+Entity: FechasReproceso, Table: Fechas_Reprocesos
+Entity: FiltroCat, Table: Filtro_Cat
+Entity: FiltroCliente, Table: Filtro_Clientes
+Entity: FiltroClientesTemp, Table: Filtro_Clientes_Temp
+Entity: FiltroEmp, Table: Filtro_Emp
+Entity: FiltroLlTemp, Table: Filtro_LL_Temp
+Entity: FiltroMar, Table: Filtro_Mar
+Entity: FiltroRet, Table: Filtro_Ret
+Entity: FiltroRutasVtum, Table: Filtro_RutasVta
+Entity: FiltroSab, Table: Filtro_Sab
+Entity: FiltroSeg, Table: Filtro_Seg
+Entity: FiltroSku, Table: Filtro_Skus
+Entity: FiltroSkusTemp, Table: Filtro_Skus_Temp
+Entity: FiltroTam, Table: Filtro_Tam
+Entity: FiltroTipoProducto, Table: Filtro_Tipo_Producto
+Entity: FiltrosXUsuario, Table: Filtros_x_Usuarios
+Entity: GerenciasDist, Table: Gerencias_Dist
+Entity: GerenciasZona, Table: Gerencias_Zona
+Entity: GrupoAutorizado, Table: Grupo_Autorizado
+Entity: IntervalosMese, Table: intervalos_meses
+Entity: Localidad, Table: Localidad
+Entity: LogErrorInterfaz, Table: LogError_Interfaz
+Entity: MaestroPersonal, Table: Maestro_Personal
+Entity: MasterProductosYajaCsv, Table: master productos YAJA CSV
+Entity: Mese, Table:
+Entity: MetodoVentum, Table: Metodo_Venta
+Entity: MetodosVentaTemp, Table: Metodos_Venta_Temp
+Entity: MovimientosTemporale, Table: MovimientosTemporales
+Entity: MovimientosTemporalesMix, Table: MovimientosTemporalesMIX
+Entity: MovimientosVentaRutaTemp, Table: MovimientosVentaRutaTemp
+Entity: MovimientosVentaRutum, Table: MovimientosVentaRuta
+Entity: NivelesMercado, Table: Niveles_Mercado
+Entity: NivelesMercadoTemp, Table: Niveles_Mercado_TEMP
+Entity: Om01, Table: OM01
+Entity: Om01Bo, Table: om01_BOS
+Entity: Om08, Table: OM08
+Entity: Om09, Table: om09
+Entity: ParametroPagoComisione, Table: Parametro_Pago_Comisiones
+Entity: PreciosBajosXSku, Table: Precios_bajos_x_Sku
+Entity: PreciosBajosXSkuTemp, Table: Precios_bajos_x_Sku_Temp
+Entity: ProductosInterfaz, Table: Productos_Interfaz
+Entity: ProductosLiquido, Table:
+Entity: ProductosMixInterfaz, Table: Productos_Mix_Interfaz
+Entity: ProductosYaja5, Table: PRODUCTOS_YAJA5
+Entity: Prueba1, Table: Prueba1
+Entity: Region, Table: Region
+Entity: RutasBasis, Table: Rutas_Basis
+Entity: RutasPendiente, Table: RutasPendientes
+Entity: RutasVentum, Table: Rutas_Venta
+Entity: ShipfromInterfaz, Table: Shipfrom_Interfaz
+Entity: ShiptoInterfaz, Table: Shipto_Interfaz
+Entity: SkusFemsaVe, Table: SkusFemsaVE
+Entity: SkusFemsaVeB2, Table: SkusFemsaVE_B2
+Entity: SkusFemsaVeB3, Table: SkusFemsaVE_B3
+Entity: SkusFemsaVeBk, Table: SkusFemsaVE_BK
+Entity: StatusCubo, Table: status_cubos
+Entity: TablaCanale, Table: Tabla_Canales
+Entity: TablaCanalesAgr, Table: Tabla_Canales_agr
+Entity: TablaCanalesBk, Table: Tabla_Canales_BK
+Entity: TablaCanalesKo, Table: Tabla_Canales_KO
+Entity: TablaCanalesTemp, Table: Tabla_Canales_Temp
+Entity: TablaCanalesYy, Table: Tabla_Canales_YY
+Entity: TablaCiudade, Table: Tabla_Ciudades
+Entity: TablaCliente, Table: Tabla_Clientes
+Entity: TablaClientesBk, Table: Tabla_Clientes_BK
+Entity: TablaClientesHistorico, Table: Tabla_Clientes_Historico
+Entity: TablaClientesHistorico2, Table: Tabla_Clientes_Historico2
+Entity: TablaClientesHistoricoSemanal, Table: Tabla_Clientes_Historico_Semanal
+Entity: TablaCombinacionesMultipack, Table: Tabla_Combinaciones_Multipack
+Entity: TablaCuadre, Table: Tabla_Cuadre
+Entity: TablaCuentasClafe, Table: Tabla_Cuentas_Claves
+Entity: TablaCuentasClavesBk, Table: Tabla_Cuentas_Claves_BK
+Entity: TablaEstado, Table: Tabla_Estados
+Entity: TablaExclusividad, Table: Tabla_Exclusividad
+Entity: TablaFecha, Table: Tabla_Fechas
+Entity: TablaFechasMensuale, Table: Tabla_Fechas_Mensuales
+Entity: TablaMonedum, Table: Tabla_Moneda
+Entity: TablaProducto, Table: Tabla_Productos
+Entity: TablaProductosBasisSap, Table: Tabla_Productos_Basis_SAP
+Entity: TablaProductosConversion, Table: Tabla_Productos_Conversion
+Entity: TablaProductosEmpaque, Table: Tabla_Productos_Empaque
+Entity: TablaProductosEstructuraNueva, Table: Tabla_ProductosEstructuraNueva
+Entity: TablaProductosHistorico, Table: Tabla_Productos_Historico
+Entity: TablaProductosMix, Table: Tabla_Productos_MIX
+Entity: TablaProductosMixInterface, Table: Tabla_Productos_MIX_Interface
+Entity: TablaProductosMixInterfaceBk, Table: Tabla_Productos_MIX_Interface_BK
+Entity: TablaProductosTemp, Table: Tabla_Productos_TEMP
+Entity: TablaSubCanalesKo, Table: Tabla_SubCanales_KO
+Entity: TipoVentasInterfaz, Table: Tipo_Ventas_Interfaz
+Entity: Tlog, Table: TLOG
+Entity: VdvIndicadore, Table: VDV_Indicadores
+Entity: Venta, Table: VENTAS
+Entity: VentasComisionesEntregadoresEsquema, Table:
+Entity: VentasInterfaz, Table: Ventas_Interfaz
+Entity: VentasXClientesMensuale, Table: Ventas_x_Clientes_Mensuales
+Entity: VentasXx, Table: Ventas_XX
+Entity: Ventasxsku, Table: VENTASXSKU
+Entity: VistaAyudante, Table:
+Entity: VistaCadena, Table:
+Entity: VistaCategoria, Table:
+Entity: VistaDevolucionxsku, Table:
+Entity: VistaEmpaque, Table:
+Entity: VistaFactVentasMultipack, Table:
+Entity: VistaFechasMensuale, Table:
+Entity: VistaFechasSemanale, Table:
+Entity: VistaMarca, Table:
+Entity: VistaMultipackValorPorcentual, Table:
+Entity: VistaRetornabilidad, Table:
+Entity: VistaSabore, Table:
+Entity: VistaSegmento, Table:
+Entity: VistaTablaProductosTemp, Table:
+Entity: VistaTamaño, Table:
+Entity: VistaTiposProducto, Table:
+Entity: VistaTp, Table:
+Entity: VistaVentasxsku, Table:
+Entity: Xx09, Table: XX09
+
+
+
+-TENER EN CUENTA ESTO PARA EL FRONT, Y LAS LLEGADAS DEL BACK, DE REPENTE NECESITAREMOS QUE SE HAGA UNA VALIDACION DE DATOS INGRESADOS
